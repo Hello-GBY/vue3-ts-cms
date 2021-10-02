@@ -17,4 +17,4 @@ trim_trailing_whitespace = false
 # 规定编辑的时候的规范 比如table键空格数
 # 此文件需要自己创建
 # 在编辑时起作用
-# 需要安装一个插件 edit
+# 需要安装一个插件 editconfig for vscode
