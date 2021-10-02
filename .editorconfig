@@ -1,0 +1,20 @@
+# https://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+# 规定编辑的时候的规范 比如table键空格数
+# 此文件需要自己创建
+# 在编辑时起作用
+# 需要安装一个插件 edit
