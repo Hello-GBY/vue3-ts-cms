@@ -49,3 +49,9 @@ npx husky-init && npm install
 留坑 配置这个 vscode 内置的git 提交不好使
 需要通过终端提交
 git commit -m 'test01'
+
+### 配置commitizen
+```
+npm i commitizen -D
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```
