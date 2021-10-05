@@ -3,12 +3,14 @@ module.exports = {
   env: {
     node: true
   },
+  // 默认的规范 会和自己配置的prettier冲突
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/typescript/recommended',
     '@vue/prettier',
-    '@vue/prettier/@typescript-eslint'
+    '@vue/prettier/@typescript-eslint',
+    'plugin:prettier/recommended'
   ],
   parserOptions: {
     ecmaVersion: 2020

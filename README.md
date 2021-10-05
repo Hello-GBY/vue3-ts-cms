@@ -28,6 +28,21 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### prettier
+### 配置editorconfig
 
+
+### 1. 配置prettier
+
+```
+npm i prettier 
+```
 See https://zhuanlan.zhihu.com/p/81764012?from_voters_page=true
+
+### 2. 解决 eslint 和 prettier 冲突问题
+npm i eslint-plugin-prettier eslint-config-prettier -D
+
+
+### git 提交的时候 进行规范
+```
+npx husky-init && npm install
+```
