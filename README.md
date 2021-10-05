@@ -46,3 +46,6 @@ npm i eslint-plugin-prettier eslint-config-prettier -D
 ```
 npx husky-init && npm install
 ```
+留坑 配置这个 vscode 内置的git 提交不好使
+需要通过终端提交
+git commit -m 'test01'
