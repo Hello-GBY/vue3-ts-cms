@@ -55,3 +55,9 @@ git commit -m 'test01'
 npm i commitizen -D
 npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
+
+### 配置commitilint
+```
+ npm install --save-dev @commitlint/config-conventional @commitlint/cli
+```
+新建commit.config.js
