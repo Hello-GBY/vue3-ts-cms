@@ -70,3 +70,6 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ### 通过 npx cz 提交
 在package.json 中进行语义转换了
 
+
+### vue.config.js 配置
+See https://cli.vuejs.org/zh/config/
