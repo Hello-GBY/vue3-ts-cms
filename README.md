@@ -61,3 +61,12 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
  npm install --save-dev @commitlint/config-conventional @commitlint/cli
 ```
 新建commit.config.js
+
+执行
+```
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+### 通过 npx cz 提交
+在package.json 中进行语义转换了
+
