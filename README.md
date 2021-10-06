@@ -73,3 +73,6 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 
 ### vue.config.js 配置
 See https://cli.vuejs.org/zh/config/
+
+### 集成 element-plus
+
