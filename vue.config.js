@@ -1,5 +1,6 @@
 const path = require('path')
-
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = {
   outputDir: './build/',
   configureWebpack: (config) => {
@@ -7,6 +8,13 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'), // 要是绝对路径
       components: '@/components'
     }
+
+    config.plugins.push(
+      Components({
+        resolvers: [ElementPlusResolver()]
+      })
+    )
+    // return config
   }
   //链式调用
   // chainWebpack: (config) => {
