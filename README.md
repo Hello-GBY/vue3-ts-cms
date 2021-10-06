@@ -6,22 +6,27 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动项目
 
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包项目
 
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### 全局格式化
 
 ```
 npm run lint
+```
+### 提交代码
+
+```
+npm run commit
 ```
 
 ### Customize configuration
@@ -59,15 +64,11 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ### 配置commitilint
 ```
  npm install --save-dev @commitlint/config-conventional @commitlint/cli
-```
-新建commit.config.js
-
-执行
-```
+ 新建commit.config.js
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 
-### 通过 npx cz 提交
+### 配置 npx cz 提交
 在package.json 中进行语义转换了
 
 
@@ -75,4 +76,13 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 See https://cli.vuejs.org/zh/config/
 
 ### 集成 element-plus
+
+
+
+
+
+### 采坑
+## 在ts文件中引入外部模块的时候报错，
+在打vscode时会提示 一个以下内容的弹窗 选 disable 即可
+A package.json file is detected in the project. This project may be a Node.js project. Do you want to disable this extension?
 
