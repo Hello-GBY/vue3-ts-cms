@@ -2,6 +2,7 @@ const path = require('path')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
+// https://cli.vuejs.org/zh/config/#configurewebpack
 module.exports = {
   outputDir: './build/',
   configureWebpack: (config) => {
