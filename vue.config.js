@@ -5,6 +5,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 // https://cli.vuejs.org/zh/config/#configurewebpack
 module.exports = {
   outputDir: './build/',
+  publicPath: './',
   configureWebpack: (config) => {
     config.resolve.alias = {
       '@': path.resolve(__dirname, 'src'), // 要是绝对路径
