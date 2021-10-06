@@ -1,16 +1,14 @@
 <template>
   <div>{{ $store.state.name }}</div>
   <el-button>按钮</el-button>
+  <el-input>按钮</el-input>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
 
 export default defineComponent({
-  components: {
-    ElButton
-  },
+  components: {},
   setup() {
     return {
       // name: $store.state.namex
