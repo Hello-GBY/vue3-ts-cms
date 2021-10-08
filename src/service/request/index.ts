@@ -55,6 +55,7 @@ class MyRequest {
     // response:
     this.instance.interceptors.response.use(
       (res) => {
+        // todo: 有坑
         const data: any = res.data
         if (data.returnCode == '-1001') {
           console.log('请求失败的错误信息')
@@ -79,9 +80,22 @@ class MyRequest {
     )
   }
 
-  request(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {
+  request<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
     this.showLoading = config.showLoading ?? false // 全局loading
-    return this.instance.request(config)
+    return this.instance.request<never, T>(config)
+    // return new Promise((resolve, reject) => {
+    //   this.instance
+    //     .request<never, T>(config)
+    //     .then((res) => {
+    //       // if (config.interceptors?.responseInterceptors) {
+    //       //   res = config.interceptors.responseInterceptors(res)
+    //       // }
+    //       resolve(res)
+    //     })
+    //     .catch((err) => {
+    //       reject(err)
+    //     })
+    // })
   }
 
   get(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {

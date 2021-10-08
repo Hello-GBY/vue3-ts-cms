@@ -45,20 +45,24 @@ axios.interceptors.response.use(
 //   url: 'http://123.207.32.32:8000/home/multidata',
 //   method: 'get'
 // })
-
-MyRequest.request({
+interface dataType {
+  data: any
+  returnCode: string
+  success: true
+}
+MyRequest.request<dataType>({
   url: '/home/multidata',
   method: 'get',
-  interceptors: {
-    requestInterceptors: (config) => {
-      const Token = ''
-      const config_: any = config
-      if (Token) {
-        config_.headers.Authorization = 'token'
-      }
-      return config_
-    }
-  },
+  // interceptors: {
+  //   requestInterceptors: (config) => {
+  //     const Token = ''
+  //     // const config_: any = config
+  //     // if (Token) {
+  //     //   config_.headers.Authorization = 'token'
+  //     // }
+  //     return config
+  //   }
+  // },
   showLoading: true
 }).then((res) => {
   console.log('res: ', res)
