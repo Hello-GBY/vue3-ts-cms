@@ -6,25 +6,25 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElLoading } from 'element-plus'
+import { ElButton } from 'element-plus'
 
 export default defineComponent({
-  components: {},
+  components: { ElButton },
   setup() {
-    const openFullScreen2 = () => {
-      const loading = ElLoading.service({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)'
-      })
-      setTimeout(() => {
-        loading.close()
-      }, 2000)
-    }
+    // const openFullScreen2 = () => {
+    // const loading = ElLoading.service({
+    //   lock: true,
+    //   text: 'Loading',
+    //   spinner: 'el-icon-loading',
+    //   background: 'rgba(0, 0, 0, 0.7)'
+    // })
+    //   setTimeout(() => {
+    //     loading.close()
+    //   }, 2000)
+    // },
     return {
       // name: $store.state.namex
-      openFullScreen2
+      // openFullScreen2
     }
   }
 })

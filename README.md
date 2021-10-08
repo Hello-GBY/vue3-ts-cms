@@ -76,7 +76,8 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 See https://cli.vuejs.org/zh/config/
 
 ### 集成 element-plus
-
+vue3.0全局和按需引入element-plus
+https://blog.csdn.net/weixin_38687522/article/details/117463124
 
 
 
