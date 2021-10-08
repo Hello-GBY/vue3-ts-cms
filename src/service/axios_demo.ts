@@ -58,14 +58,14 @@ MyRequest.request({
       }
       return config_
     }
-  }
+  },
+  showLoading: true
 }).then((res) => {
   console.log('res: ', res)
 })
 
-// MyRequest.request({
-//   url: '/1home/multidata',
-//   method: 'get'
-// }).then((res) => {
-//   console.log('res: ', res)
-// })
+MyRequest.get({
+  url: '/home/multidata'
+}).then((res) => {
+  console.log('res: ', res)
+})

@@ -10,6 +10,7 @@ interface InterceptorsHooks {
 }
 interface MyAxiosRequestConfig extends AxiosRequestConfig {
   interceptors?: InterceptorsHooks
+  showLoading?: boolean // 展示全屏 loading
 }
 
 export { MyAxiosRequestConfig, InterceptorsHooks }
