@@ -32,6 +32,7 @@ axios.interceptors.request.use(
 // 响应拦截 (服务器正常返回了数据， 20X)
 axios.interceptors.response.use(
   (res) => {
+    console.log('res: ', res)
     return res.data
   },
   (err) => {
@@ -40,10 +41,31 @@ axios.interceptors.response.use(
     return err
   }
 )
+// axios.request({
+//   url: 'http://123.207.32.32:8000/home/multidata',
+//   method: 'get'
+// })
 
 MyRequest.request({
   url: '/home/multidata',
-  method: 'get'
+  method: 'get',
+  interceptors: {
+    requestInterceptors: (config) => {
+      const Token = ''
+      const config_: any = config
+      if (Token) {
+        config_.headers.Authorization = 'token'
+      }
+      return config_
+    }
+  }
 }).then((res) => {
   console.log('res: ', res)
 })
+
+// MyRequest.request({
+//   url: '/1home/multidata',
+//   method: 'get'
+// }).then((res) => {
+//   console.log('res: ', res)
+// })

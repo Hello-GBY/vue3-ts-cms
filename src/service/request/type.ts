@@ -8,7 +8,6 @@ interface InterceptorsHooks {
   responseInterceptors?: (config: AxiosResponse) => AxiosResponse
   responseInterceptorsCatch?: (err: any) => any
 }
-
 interface MyAxiosRequestConfig extends AxiosRequestConfig {
   interceptors?: InterceptorsHooks
 }
