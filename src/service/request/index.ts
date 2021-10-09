@@ -98,19 +98,19 @@ class MyRequest {
     // })
   }
 
-  get(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {
+  get<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'GET' })
   }
-  post(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {
+  post<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'POST' })
   }
-  delete(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {
+  delete<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'DELETE' })
   }
-  put(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {
+  put<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'PUT' })
   }
-  patch(config: MyAxiosRequestConfig): Promise<AxiosResponse<never>> {
+  patch<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'PATCH' })
   }
 }
