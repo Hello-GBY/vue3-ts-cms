@@ -42,6 +42,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 npm i prettier 
 ```
 See https://zhuanlan.zhihu.com/p/81764012?from_voters_page=true
+https://blog.csdn.net/coucouxie/article/details/108375589
 
 ### 2. 解决 eslint 和 prettier 冲突问题
 npm i eslint-plugin-prettier eslint-config-prettier -D
@@ -82,6 +83,11 @@ https://blog.csdn.net/weixin_38687522/article/details/117463124
 采坑 和 最新的官网有冲突
 最新的官网 不能动态引入 就会没有样式
 目前 这两种方式有冲突
+
+### normalize.css (normalize 标准)
+```
+npm i normalize.css -save
+```
 
 
 ### 采坑

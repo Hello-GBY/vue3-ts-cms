@@ -1,33 +1,31 @@
 <template>
-  <div>{{ $store.state.name }}</div>
-  <el-button>按钮</el-button>
-  <el-button type="primary" @click="openFullScreen2"> As a service </el-button>
+  <div id="login">
+    <loginPanel />
+  </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
+import LoginPanel from './cpns/login-panel.vue'
 
 export default defineComponent({
-  components: { ElButton },
+  name: '',
+  components: {
+    LoginPanel
+  },
   setup() {
-    // const openFullScreen2 = () => {
-    // const loading = ElLoading.service({
-    //   lock: true,
-    //   text: 'Loading',
-    //   spinner: 'el-icon-loading',
-    //   background: 'rgba(0, 0, 0, 0.7)'
-    // })
-    //   setTimeout(() => {
-    //     loading.close()
-    //   }, 2000)
-    // },
-    return {
-      // name: $store.state.namex
-      // openFullScreen2
-    }
+    return {}
   }
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(234, 230, 226);
+}
+</style>
