@@ -20,10 +20,14 @@ export default defineComponent({
       name: '',
       password: ''
     })
-
+    const loginActive = () => {
+      // todo: 真正的登录
+      console.log('真正的登录')
+    }
     return {
       rules,
-      account
+      account,
+      loginActive
     }
   }
 })

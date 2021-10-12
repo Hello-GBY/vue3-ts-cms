@@ -22,7 +22,12 @@
       <el-link type="primary">忘记密码</el-link>
     </div>
     <div class="login-button">
-      <el-button type="primary"> 立即登录 </el-button>
+      <el-button
+        type="primary"
+        class="login-button-button"
+        @click="handleLoginClick"
+        >立即登录</el-button
+      >
     </div>
   </div>
 </template>
@@ -37,7 +42,13 @@ export default defineComponent({
   components: { LoginAccount, LoginPhone },
   setup() {
     const isKeepPassWrod = ref(false)
-    return { isKeepPassWrod }
+    // const accountRef = ref<InstanceType <typeof LoginAccount>>()
+    const accountRef = ref('123')
+    function handleLoginClick() {
+      // 调用子组件的登录
+      accountRef.value.loginActive()
+    }
+    return { isKeepPassWrod, handleLoginClick, accountRef }
   }
 })
 </script>
@@ -73,7 +84,9 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
+    .login-button-button {
+      width: 100%;
+    }
   }
 }
 </style>
-
