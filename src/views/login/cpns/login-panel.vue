@@ -7,7 +7,7 @@
           <template #label>
             <span><i class="el-icon-user-solid"></i>密码登录</span>
           </template>
-          <login-account />
+          <login-account ref="accountRef" />
         </el-tab-pane>
         <el-tab-pane>
           <template #label>
@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
 import LoginAccount from './panel/panel-account.vue'
 import LoginPhone from './panel/panel-phone.vue'
@@ -42,12 +42,12 @@ export default defineComponent({
   components: { LoginAccount, LoginPhone },
   setup() {
     const isKeepPassWrod = ref(false)
-    // const accountRef = ref<InstanceType <typeof LoginAccount>>()
-    const accountRef = ref('123')
+    const accountRef = ref<InstanceType<typeof LoginAccount>>()
+
     function handleLoginClick() {
-      // 调用子组件的登录
-      accountRef.value.loginActive()
+      accountRef.value?.loginActive() // 调用子组件的登录
     }
+
     return { isKeepPassWrod, handleLoginClick, accountRef }
   }
 })

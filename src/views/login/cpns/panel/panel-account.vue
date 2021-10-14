@@ -9,9 +9,9 @@
   </el-form>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { rules } from '@/views/login/config/account-config.ts'
+import { rules } from '@/views/login/config/account-config'
 export default defineComponent({
   name: '',
   components: {},
