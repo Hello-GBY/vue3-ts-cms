@@ -6,7 +6,7 @@ import '@/service/axios_demo'
 import '@/assets/css/base.scss'
 // todo: 待优化
 // import 'element-plus/packages/theme-chalk/src/base.scss'
-import 'element-plus/packages/theme-chalk/src/loading.scss'
+// import 'element-plus/packages/theme-chalk/src/loading.scss'
 
 const app = createApp(App)
 app.use(store)

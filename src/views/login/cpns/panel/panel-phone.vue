@@ -19,9 +19,9 @@
   </el-form>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { rules } from '@/views/login/config/phone-config.ts'
+import { rules } from '@/views/login/config/phone-config'
 export default defineComponent({
   name: '',
   components: {},
@@ -33,10 +33,14 @@ export default defineComponent({
     function getPhoneCode() {
       // todo: 获取验证码
     }
+    const loginActive = (isjizhumima: boolean) => {
+      console.log('isjizhumima: ', isjizhumima)
+    }
     return {
       rules,
       phone,
-      getPhoneCode
+      getPhoneCode,
+      loginActive
     }
   }
 })

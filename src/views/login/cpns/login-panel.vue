@@ -2,18 +2,18 @@
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
     <div class="tabs">
-      <el-tabs type="border-card" stretch>
-        <el-tab-pane>
+      <el-tabs type="border-card" stretch v-model="currentTab">
+        <el-tab-pane name="account">
           <template #label>
             <span><i class="el-icon-user-solid"></i>密码登录</span>
           </template>
           <login-account ref="accountRef" />
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane name="phone">
           <template #label>
             <span><i class="el-icon-mobile-phone"></i> 手机登录</span>
           </template>
-          <login-phone />
+          <login-phone ref="loginRef" />
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -42,13 +42,24 @@ export default defineComponent({
   components: { LoginAccount, LoginPhone },
   setup() {
     const isKeepPassWrod = ref(false)
+    const currentTab = ref('account')
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
-
+    const loginRef = ref<InstanceType<typeof LoginPhone>>()
     function handleLoginClick() {
-      accountRef.value?.loginActive() // 调用子组件的登录
+      if (currentTab.value == 'account') {
+        accountRef.value?.loginActive(isKeepPassWrod.value) // 调用子组件的登录
+      } else {
+        loginRef.value?.loginActive(isKeepPassWrod.value) // 调用子组件的登录
+      }
     }
 
-    return { isKeepPassWrod, handleLoginClick, accountRef }
+    return {
+      isKeepPassWrod,
+      handleLoginClick,
+      accountRef,
+      loginRef,
+      currentTab
+    }
   }
 })
 </script>
