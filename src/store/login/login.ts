@@ -1,6 +1,8 @@
 import { Module } from 'vuex'
 import { ILoginInstance } from './types'
 import { IRootState } from '../types'
+import { accountLoginRequest } from '@/service/login/login'
+import { IAccount } from '@/service/login/types'
 
 const loginModel: Module<ILoginInstance, IRootState> = {
   namespaced: true,
@@ -12,10 +14,11 @@ const loginModel: Module<ILoginInstance, IRootState> = {
   },
   mutations: {},
   actions: {
-    accountLoginAction({ commit }, payload: any) {
-      console.log('payload: ', payload)
-      console.log('accountLoginAction: ')
+    async accountLoginAction({ commit }, payload: IAccount) {
+      const loginResult = await accountLoginRequest(payload)
+      console.log('loginResult: ', loginResult)
     },
+
     phoneLoginAction({ commit }, payload: any) {
       console.log('payload: ', payload)
       console.log('phoneLoginAction: ')

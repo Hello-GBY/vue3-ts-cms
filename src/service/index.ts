@@ -1,7 +1,8 @@
 import MyRequest from './request/index'
+import { BASE_URL } from './request/config'
 
 const myRequest = new MyRequest({
-  baseURL: process.env.VUE_APP_BASE_URL,
+  baseURL: BASE_URL,
   timeout: 10000
 })
 export default myRequest

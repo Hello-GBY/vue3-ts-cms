@@ -37,7 +37,6 @@ class MyRequest {
         if (Cookies.get('Token')) {
           // config.headers.Authorization = Cookies.get('Token') + ''
         }
-        console.log('this.showLoading: ', this.showLoading)
         if (this.showLoading) {
           this.loadingInstance = ElLoading.service({
             lock: true,
