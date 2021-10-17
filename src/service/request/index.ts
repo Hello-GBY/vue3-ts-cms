@@ -1,17 +1,18 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import type { AxiosInstance } from 'axios'
+import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { InterceptorsHooks, MyAxiosRequestConfig } from './type'
 import { ElLoading } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/components/loading/src/loading.type'
+import LocalCache from '@/utils/cache'
 
 const LOADING_FLAG = false
 // 统一封装axios
 class MyRequest {
   instance: AxiosInstance // axios 实例
   interceptors?: InterceptorsHooks // 请求拦截、响应拦截hooks
-  loadingInstance?: ILoadingInstance
-  showLoading: boolean
+  loadingInstance?: ILoadingInstance // 全局loading实例
+  showLoading: boolean // 是否显示loading
 
   constructor(config: MyAxiosRequestConfig) {
     this.instance = axios.create(config) // 初始化_创建axios实例
@@ -33,10 +34,12 @@ class MyRequest {
     // 默认拦截器配置（必须执行）
     // request:
     this.instance.interceptors.request.use(
-      (config) => {
-        if (Cookies.get('Token')) {
-          // config.headers.Authorization = Cookies.get('Token') + ''
+      (config: any) => {
+        //todo: 这块 any 可以优化
+        if (LocalCache.getCache('token')) {
+          config.headers.Authorization = LocalCache.getCache('token')
         }
+
         if (this.showLoading) {
           this.loadingInstance = ElLoading.service({
             lock: true,
@@ -44,7 +47,6 @@ class MyRequest {
             background: 'rgba(0, 0, 0, 0.7)'
           })
         }
-
         return config
       },
       (err) => {

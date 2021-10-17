@@ -41,7 +41,7 @@ export default defineComponent({
   name: '',
   components: { LoginAccount, LoginPhone },
   setup() {
-    const isKeepPassWrod = ref(false)
+    const isKeepPassWrod = ref(true)
     const currentTab = ref('account')
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
     const loginRef = ref<InstanceType<typeof LoginPhone>>()

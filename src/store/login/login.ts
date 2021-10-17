@@ -1,28 +1,80 @@
 import { Module } from 'vuex'
 import { ILoginInstance } from './types'
 import { IRootState } from '../types'
-import { accountLoginRequest } from '@/service/login/login'
+import {
+  accountLoginRequest,
+  userInfoByIdRequest,
+  userMenusByRoleIdRequest
+} from '@/service/login/login'
 import { IAccount } from '@/service/login/types'
+import LocalCache from '@/utils/cache'
+import router from '@/router'
 
 const loginModel: Module<ILoginInstance, IRootState> = {
   namespaced: true,
   state: () => {
     return {
       token: '',
-      userInfo: ''
+      userInfo: '',
+      userMenus: ''
     }
   },
-  mutations: {},
+  mutations: {
+    setToken(state, token: string) {
+      state.token = token
+    },
+    setUserInfo(state, userInfo: any) {
+      state.userInfo = userInfo
+    },
+    setUserMenus(state, userMenus: any) {
+      state.userMenus = userMenus
+    }
+  },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
       // 1.实现登录的逻辑
       const loginResult = await accountLoginRequest(payload)
-      console.log('loginResult: ', loginResult)
-    },
+      const { id, token } = loginResult.data
+      commit('setToken', token)
+      LocalCache.setCache('token', token)
 
+      // 2. 请求用户信息
+      const userInfoResult = await userInfoByIdRequest(id)
+      const userInfo = userInfoResult.data
+      console.log('userInfo: ', userInfo)
+      commit('setUserInfo', userInfo)
+      LocalCache.setCache('userInfo', userInfo)
+
+      // 3.请求菜单
+      const userMenusResult = await userMenusByRoleIdRequest(userInfo.role.id)
+      console.log('userMenusResult: ', userMenusResult)
+      const userMenus = userMenusResult.data
+      commit('setUserMenus', userMenus)
+      LocalCache.setCache('userMenus', userMenus)
+
+      // 跳转转到 首页
+      router.push('/main')
+    },
     phoneLoginAction({ commit }, payload: any) {
       console.log('payload: ', payload)
       console.log('phoneLoginAction: ')
+    },
+    setStoreByLocalStorage({ commit }) {
+      const token = LocalCache.getCache('token')
+      console.log('token: ', token)
+      const userInfo = LocalCache.getCache('userInfo')
+      console.log('userInfo: ', userInfo)
+      const userMenus = LocalCache.getCache('userMenus')
+      console.log('userMenus: ', userMenus)
+      if (token) {
+        commit('setToken', token)
+      }
+      if (userInfo) {
+        commit('setUserInfo', userInfo)
+      }
+      if (userMenus) {
+        commit('setUserMenus', userMenus)
+      }
     }
   },
   modules: {}

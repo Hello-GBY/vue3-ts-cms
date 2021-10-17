@@ -2,15 +2,15 @@ interface IAccount {
   name: string
   password: string
 }
-interface ILoginApiData_Data {
+interface IAccountLogin {
   id: number
   name: string
   token: string
 }
 
-interface ILoginApiData {
+interface ILoginApiData<T = any> {
   code: number
-  data: ILoginApiData_Data
+  data: T
 }
 
-export { IAccount, ILoginApiData }
+export { IAccount, ILoginApiData, IAccountLogin }
