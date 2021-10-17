@@ -15,6 +15,7 @@ const loginModel: Module<ILoginInstance, IRootState> = {
   mutations: {},
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
+      // 1.实现登录的逻辑
       const loginResult = await accountLoginRequest(payload)
       console.log('loginResult: ', loginResult)
     },

@@ -1,14 +1,13 @@
 import MyRequest from '@/service/index'
-import { IAccount } from './types'
+import { IAccount, ILoginApiData } from './types'
 
 enum loginApi {
-  baseURL = 'http://152.136.185.210:5000',
+  // baseURL = 'http://152.136.185.210:5000',
   loginBaseUrl = '/login'
 }
 
-function accountLoginRequest(account: IAccount): Promise<any> {
-  return MyRequest.post({
-    baseURL: loginApi.baseURL,
+function accountLoginRequest(account: IAccount): Promise<ILoginApiData> {
+  return MyRequest.post<ILoginApiData>({
     url: loginApi.loginBaseUrl,
     data: account
   })

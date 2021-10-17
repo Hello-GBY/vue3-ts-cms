@@ -1,6 +1,16 @@
-export interface IAccount {
+interface IAccount {
   name: string
   password: string
 }
+interface ILoginApiData_Data {
+  id: number
+  name: string
+  token: string
+}
 
-// export { IAccount }
+interface ILoginApiData {
+  code: number
+  data: ILoginApiData_Data
+}
+
+export { IAccount, ILoginApiData }

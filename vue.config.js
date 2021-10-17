@@ -9,10 +9,10 @@ module.exports = {
   // 配置代理
   devServer: {
     proxy: {
-      '^api': {
+      '^/api': {
         target: 'http://152.136.185.210:5000',
         pathRewrite: {
-          '^api': ''
+          '^/api': ''
         },
         changeOrigin: true
       }
