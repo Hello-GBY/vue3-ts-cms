@@ -95,3 +95,7 @@ npm i normalize.css -save
 在打vscode时会提示 一个以下内容的弹窗 选 disable 即可
 A package.json file is detected in the project. This project may be a Node.js project. Do you want to disable this extension?
 
+
+
+### 待优化
+main.vue 下的样式 移动到 base.css 中

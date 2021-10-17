@@ -1,6 +1,6 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
-import type { AxiosInstance, AxiosRequestConfig } from 'axios'
+// import Cookies from 'js-cookie'
+import type { AxiosInstance } from 'axios'
 import type { InterceptorsHooks, MyAxiosRequestConfig } from './type'
 import { ElLoading } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/components/loading/src/loading.type'

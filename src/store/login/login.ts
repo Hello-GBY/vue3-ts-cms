@@ -52,20 +52,19 @@ const loginModel: Module<ILoginInstance, IRootState> = {
       commit('setUserMenus', userMenus)
       LocalCache.setCache('userMenus', userMenus)
 
-      // 跳转转到 首页
+      // 4.跳转转到 首页
       router.push('/main')
     },
     phoneLoginAction({ commit }, payload: any) {
+      console.log('commit: ', commit)
       console.log('payload: ', payload)
       console.log('phoneLoginAction: ')
     },
     setStoreByLocalStorage({ commit }) {
       const token = LocalCache.getCache('token')
-      console.log('token: ', token)
       const userInfo = LocalCache.getCache('userInfo')
-      console.log('userInfo: ', userInfo)
       const userMenus = LocalCache.getCache('userMenus')
-      console.log('userMenus: ', userMenus)
+
       if (token) {
         commit('setToken', token)
       }
