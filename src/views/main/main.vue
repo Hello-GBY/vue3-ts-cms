@@ -1,9 +1,14 @@
 <template>
   <!--主页面布局-->
   <el-container class="main-content">
-    <el-aside width="210px">Aside</el-aside>
+    <el-aside width="210px">
+      <navMenu></navMenu>
+    </el-aside>
+
     <el-container class="page">
-      <el-header class="page-header">Header</el-header>
+      <el-header class="page-header">
+        <navHeader></navHeader>
+      </el-header>
       <el-main class="page-content">Main</el-main>
     </el-container>
   </el-container>
@@ -11,10 +16,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import navHeader from '@/components/nav-header'
+import navMenu from '@/components/nav-menu'
 
 export default defineComponent({
   name: '',
-  components: {},
+  components: {
+    navHeader,
+    navMenu
+  },
   setup() {
     return {}
   }
