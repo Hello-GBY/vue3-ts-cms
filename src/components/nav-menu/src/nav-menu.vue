@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
 
@@ -20,7 +20,7 @@ export default defineComponent({
   components: {},
   setup() {
     const store = useStore()
-
+    store.state.login.token
     return {}
   }
 })

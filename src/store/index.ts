@@ -1,5 +1,5 @@
-import { createStore } from 'vuex'
-import { IRootState } from './types'
+import { createStore, Store, useStore as useVuexStore } from 'vuex'
+import { IRootState, IStoreType } from './types'
 import loginModel from './login/login'
 
 const store = createStore<IRootState>({
@@ -21,4 +21,8 @@ export default store
 // 防止用户刷新之后 vuex 里的值没有了, localStorage 里面还有值
 export function setupStoreByLocalStorage(): void {
   store.dispatch('login/setStoreByLocalStorage')
+}
+
+export function useStore(): Store<IStoreType> {
+  return useVuexStore<IStoreType>()
 }
