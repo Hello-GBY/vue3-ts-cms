@@ -5,12 +5,43 @@
       <span class="title"> Vue3 + Ts</span>
     </div>
 
-    <el-menu default-active="2" class="el-menu-vertical-demo"> </el-menu>
+    <!-- unique-opened -->
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical"
+      background-color="#0c2135"
+      text-color="#b7bdc3"
+      active-text-color="#0a60bd"
+    >
+      <template v-for="item in userMenus" :key="item.id">
+        <!-- type == 1 可展开的菜单 -->
+        <template v-if="item.type == 1">
+          <el-sub-menu :index="item.id">
+            <template #title>
+              <i :class="item.icon"></i>
+              <span>{{ item.name }}</span>
+            </template>
+            <template v-for="subitem in item.children" :key="subitem.id">
+              <el-menu-item :index="subitem.id">
+                <i v-if="subitem.icon" :class="subitem.icon"></i>
+                <span>{{ subitem.name }}</span>
+              </el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
+        <template v-else>
+          <el-menu-item>
+            <i :class="item.icon"></i>
+            <span>{{ item.name }}</span>
+          </el-menu-item>
+        </template>
+      </template>
+    </el-menu>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
@@ -20,13 +51,16 @@ export default defineComponent({
   components: {},
   setup() {
     const store = useStore()
-    store.state.login.token
-    return {}
+    const userMenus = computed<any[]>(() => store.state.login.userMenus)
+    console.log('userMenus: ', userMenus)
+    // const userMenu = store
+    return {
+      userMenus
+    }
   }
 })
 </script>
-
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .nav-menu {
   height: 100%;
   background-color: #001529;
