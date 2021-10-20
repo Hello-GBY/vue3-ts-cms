@@ -1,17 +1,47 @@
 <template>
-  <div>456</div>
+  <div class="nav-header">
+    <i
+      class="fold-menu"
+      :class="isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
+      @click="handleFoldClick()"
+    ></i>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: '',
   components: {},
-  setup() {
-    return {}
+  emit: ['foldChange'],
+  setup(props, { emit }) {
+    const isFold = ref(false)
+
+    function handleFoldClick() {
+      isFold.value = !isFold.value
+      emit('foldChange', isFold.value)
+    }
+
+    return { isFold, handleFoldClick }
   }
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.nav-header {
+  display: flex;
+  width: 100%;
+  .fold-menu {
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 0 15px;
+  }
+}
+</style>

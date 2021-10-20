@@ -1,13 +1,13 @@
 <template>
   <!--主页面布局-->
   <el-container class="main-content">
-    <el-aside width="210px">
-      <navMenu></navMenu>
+    <el-aside :width="isCollapse ? '60px' : '210px'">
+      <navMenu :collapse="isCollapse"></navMenu>
     </el-aside>
 
     <el-container class="page">
       <el-header class="page-header">
-        <navHeader></navHeader>
+        <navHeader @foldChange="handleFoldChange"></navHeader>
       </el-header>
       <el-main class="page-content">Main</el-main>
     </el-container>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import navHeader from '@/components/nav-header'
 import navMenu from '@/components/nav-menu'
 
@@ -26,7 +26,11 @@ export default defineComponent({
     navMenu
   },
   setup() {
-    return {}
+    const isCollapse = ref(false)
+    function handleFoldChange(isFold: boolean) {
+      isCollapse.value = isFold
+    }
+    return { handleFoldChange, isCollapse }
   }
 })
 </script>

@@ -2,7 +2,7 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" alt="logo" src="~@/assets/img/vue3logo.svg" />
-      <span class="title"> Vue3 + Ts</span>
+      <span class="title" v-show="!collapse"> Vue3 + Ts</span>
     </div>
 
     <!-- unique-opened -->
@@ -12,17 +12,18 @@
       background-color="#0c2135"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
+      :collapse="collapse"
     >
-      <template v-for="item in userMenus" :key="item.id">
+      <template v-for="item in userMenus" :key="item.id + ''">
         <!-- type == 1 可展开的菜单 -->
         <template v-if="item.type == 1">
-          <el-sub-menu :index="item.id">
+          <el-sub-menu :index="item.id + ''">
             <template #title>
               <i :class="item.icon"></i>
               <span>{{ item.name }}</span>
             </template>
-            <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id">
+            <template v-for="subitem in item.children" :key="subitem.id + ''">
+              <el-menu-item :index="subitem.id + ''">
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
@@ -49,6 +50,12 @@ import { useStore } from '@/store'
 export default defineComponent({
   name: '',
   components: {},
+  props: {
+    collapse: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const store = useStore()
     const userMenus = computed<any[]>(() => store.state.login.userMenus)
