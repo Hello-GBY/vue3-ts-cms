@@ -89,6 +89,8 @@ https://blog.csdn.net/weixin_38687522/article/details/117463124
 npm i normalize.css -save
 ```
 
+### 动态路由
+权限管理 这块需要回顾
 
 ### 采坑
 ## 在ts文件中引入外部模块的时候报错，
