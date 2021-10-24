@@ -9,6 +9,7 @@ import {
 import { IAccount } from '@/service/login/types'
 import LocalCache from '@/utils/cache'
 import router from '@/router'
+import { mapMenusToRouter } from '@/utils/map-menus'
 
 const loginModel: Module<ILoginInstance, IRootState> = {
   namespaced: true,
@@ -27,7 +28,10 @@ const loginModel: Module<ILoginInstance, IRootState> = {
       state.userInfo = userInfo
     },
     setUserMenus(state, userMenus: any) {
+      // 设置动态路由
       state.userMenus = userMenus
+      mapMenusToRouter(userMenus)
+      // 将userMenus 的映射关系 设置到 router.main.children上
     }
   },
   actions: {

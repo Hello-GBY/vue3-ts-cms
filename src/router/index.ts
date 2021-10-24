@@ -14,7 +14,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/main',
     name: 'main',
-    component: () => import('@/views/main/main.vue')
+    component: () => import('@/views/main/main.vue'),
+    children: []
   },
   {
     path: '/:pathMach(.*)*',
@@ -27,6 +28,7 @@ const router = createRouter({
   routes
 })
 
+// 导航守卫
 router.beforeEach((to) => {
   if (to.path !== '/login') {
     // 判断是否登录
