@@ -68,8 +68,8 @@ MyRequest.request<dataType>({
   console.log('res: ', res)
 })
 
-MyRequest.get({
-  url: '/home/multidata'
-}).then((res) => {
-  console.log('res: ', res)
-})
+// MyRequest.get({
+//   url: '/home/multidata'
+// }).then((res) => {
+//   console.log('res: ', res)
+// })

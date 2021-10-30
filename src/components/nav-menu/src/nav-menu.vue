@@ -23,7 +23,10 @@
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id + ''">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleMenuItemClick(subitem)"
+              >
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
@@ -44,6 +47,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
 
@@ -59,10 +63,17 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const userMenus = computed<any[]>(() => store.state.login.userMenus)
-    console.log('userMenus: ', userMenus)
+    const router = useRouter()
     // const userMenu = store
+    const handleMenuItemClick = function (item: any) {
+      console.log('item: ', item)
+      router.push({
+        path: item.url ?? '/not-found'
+      })
+    }
     return {
-      userMenus
+      userMenus,
+      handleMenuItemClick
     }
   }
 })

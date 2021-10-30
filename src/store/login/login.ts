@@ -30,9 +30,7 @@ const loginModel: Module<ILoginInstance, IRootState> = {
     setUserMenus(state, userMenus: any) {
       // 设置动态路由
       state.userMenus = userMenus
-      console.log('userMenus: ', userMenus)
       const routes = mapMenusToRouter(userMenus)
-      console.log('routes: ', routes)
       // 将userMenus 的映射关系 设置到 router.main.children上
       routes.forEach((route) => {
         router.addRoute('main', route)

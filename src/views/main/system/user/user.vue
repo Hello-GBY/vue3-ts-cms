@@ -1,7 +1,5 @@
 <template>
-  <div class="user">
-    <h2>user</h2>
-  </div>
+  <div class="user">user page</div>
 </template>
 
 <script lang="ts">
