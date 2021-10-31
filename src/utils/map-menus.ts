@@ -12,7 +12,6 @@ export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
     AllRoutes.push(ModuleFile.default)
   })
 
-  console.log('AllRoutes: ', AllRoutes)
   // 2.根据菜单获取需要添加的routes
   const _recurseGetRouter = (menus: any[]): void => {
     for (const menu of menus) {
@@ -26,5 +25,6 @@ export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
     }
   }
   _recurseGetRouter(userMenus)
+  console.log('Routers: ', Routers)
   return Routers
 }
