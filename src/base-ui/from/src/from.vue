@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="userFrom" :model="form">
+  <el-form ref="userFrom">
     <el-row :gutter="20">
       <!-- <el-col :span="8">
         <el-form-item label="用户名">
@@ -9,23 +9,35 @@
       <template v-for="item in fromItems" :key="item.label">
         <el-col :span="8">
           <el-form-item :label="item.label">
-            <template v-if="item.type == 'input' || 'password'">
+            <template v-if="item.type == 'input' || item.type == 'password'">
               <el-input
                 :placeholder="item.placeholder"
                 :show-password="item.type === 'password'"
+                v-bind="item.otherOptions"
               >
               </el-input>
             </template>
             <template v-else-if="item.type == 'select'">
-              <el-select :placeholder="item.placeholder">
+              <el-select
+                v-model="selectItem"
+                :placeholder="item.placeholder"
+                style="width: 100%"
+                v-bind="item.otherOptions"
+              >
                 <el-option
-                  v-for="option in item.options"
-                  :key="option.value"
-                  :value="option.value"
+                  v-for="ele in item.options || []"
+                  :key="ele.value"
+                  :value="ele.value"
+                  :label="ele.label"
                 >
-                  {{ option.label }}
                 </el-option>
               </el-select>
+            </template>
+            <template v-else-if="item.type == 'datepicker'">
+              <el-date-picker
+                style="width: 100%"
+                v-bind="item.otherOptions"
+              ></el-date-picker>
             </template>
           </el-form-item>
         </el-col>
@@ -35,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType } from 'vue'
+import { defineComponent, reactive, PropType, ref } from 'vue'
 import { IFormItem } from '../type/types'
 // PropType 确定传递过来的泛型
 export default defineComponent({
@@ -47,9 +59,10 @@ export default defineComponent({
     }
   },
   components: {},
-  setup() {
+  setup(props) {
     const form = reactive({ name: '' })
-    return { form }
+    const selectItem = ref('')
+    return { form, selectItem }
   }
 })
 </script>

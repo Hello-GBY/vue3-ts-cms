@@ -7,5 +7,6 @@ export interface IFormItem {
   label: string
   rules?: any[]
   placeholder?: any
-  options?: any[]
+  options?: any[] // 针对select
+  otherOptions?: any // 对于需要一些特殊的属性 例如otherOptions组件
 }

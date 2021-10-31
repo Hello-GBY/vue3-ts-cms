@@ -29,24 +29,28 @@ export default defineComponent({
         placeholder: '请输入密码'
       },
       {
-        label: '创建时间',
-        type: 'datepicker',
-        placeholder: '请选择创建时间'
-      },
-      {
         label: '喜欢的运动',
         type: 'select',
         placeholder: '请选择创建时间',
         options: [
           {
-            lable: '篮球',
+            label: '篮球',
             value: '篮球'
           },
           {
-            lable: '足球',
+            label: '足球',
             value: '足球'
           }
         ]
+      },
+      {
+        label: '创建时间',
+        type: 'datepicker',
+        otherOptions: {
+          startPlaceholder: '开始时间',
+          endPlaceholder: '结束时间',
+          type: 'daterange'
+        }
       }
     ]
     return {
