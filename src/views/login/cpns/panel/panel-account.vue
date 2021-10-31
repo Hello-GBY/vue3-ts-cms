@@ -46,6 +46,7 @@ export default defineComponent({
             LocalCahe.deleteCache('password')
           }
           // todo: 验证登录
+          console.log('验证登录: ', { ...account })
           store.dispatch('login/accountLoginAction', { ...account })
           // console.log('useStore: ', useStore('login'))
         }

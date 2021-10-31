@@ -48,14 +48,13 @@ const loginModel: Module<ILoginInstance, IRootState> = {
       // 2. 请求用户信息
       const userInfoResult = await userInfoByIdRequest(id)
       const userInfo = userInfoResult.data
-      console.log('userInfo: ', userInfo)
       commit('setUserInfo', userInfo)
       LocalCache.setCache('userInfo', userInfo)
 
       // 3.请求菜单
       const userMenusResult = await userMenusByRoleIdRequest(userInfo.role.id)
-      console.log('userMenusResult: ', userMenusResult)
       const userMenus = userMenusResult.data
+      // 设置动态路由
       commit('setUserMenus', userMenus)
       LocalCache.setCache('userMenus', userMenus)
 

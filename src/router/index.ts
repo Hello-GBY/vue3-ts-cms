@@ -30,14 +30,13 @@ const router = createRouter({
 
 // 导航守卫
 router.beforeEach((to) => {
-  console.log('to: ', to)
   if (to.path !== '/login') {
     // 判断是否登录
-    console.log('LocalCache.getCache): 登录验证')
     if (!LocalCache.getCache('token')) {
       return '/login'
     }
   }
+  console.log('router.getRoutes(): ', router.getRoutes())
 })
 
 export default router

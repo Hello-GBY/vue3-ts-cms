@@ -1,9 +1,19 @@
 import { RouteRecordRaw } from 'vue-router'
 
+/* userMenus : [{
+  children: (2) [{id: 39, url: '/main/analysis/overview', name: '核心技术', sort: 106, type: 2, …}]
+    icon: "el-icon-monitor"
+    id: 38
+    name: "系统总览"
+    sort: 1
+    type: 1
+    url: "/main/analysis"
+}]
+*/
 export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
   const Routers: RouteRecordRaw[] = []
 
-  // 1.加载默认 所有 routes (按照 router 下 main 的文件夹)
+  // 1.加载默认 所有 routes (按照 router 下 main 的文件夹格式)
   const AllRoutes: RouteRecordRaw[] = []
   const RouterFiles = require.context('../router/main', true, /\.ts$/) // 加载文件夹
   RouterFiles.keys().forEach((fileName) => {
