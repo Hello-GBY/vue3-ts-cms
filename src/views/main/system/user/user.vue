@@ -60,4 +60,10 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.user {
+  .search {
+    padding-top: 22px;
+  }
+}
+</style>

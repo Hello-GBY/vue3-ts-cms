@@ -1,6 +1,6 @@
 <template>
-  <el-form ref="userFrom">
-    <el-row :gutter="20">
+  <el-form ref="userFrom" :label-width="labelWidth">
+    <el-row :gutter="50">
       <!-- <el-col :span="8">
         <el-form-item label="用户名">
           <el-input v-model="form.name"></el-input>
@@ -8,7 +8,7 @@
       </el-col> -->
       <template v-for="item in fromItems" :key="item.label">
         <el-col :span="8">
-          <el-form-item :label="item.label">
+          <el-form-item :label="item.label" :rules="item.rules">
             <template v-if="item.type == 'input' || item.type == 'password'">
               <el-input
                 :placeholder="item.placeholder"
@@ -56,6 +56,10 @@ export default defineComponent({
     fromItems: {
       type: Array as PropType<IFormItem[]>,
       default: () => []
+    },
+    labelWidth: {
+      type: String,
+      default: '100px'
     }
   },
   components: {},
