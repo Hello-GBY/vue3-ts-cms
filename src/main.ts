@@ -12,8 +12,8 @@ import { setupStoreByLocalStorage } from '@/store/index'
 
 const app = createApp(App)
 app.use(store)
+setupStoreByLocalStorage() // 注意 要在router 之前、刷新浏览器 通过 LocalStorage重新赋值 vuex
 app.use(router)
-setupStoreByLocalStorage() // 刷新浏览器 通过 LocalStorage重新赋值 vuex
 app.mount('#app')
 
 console.log(process.env.VUE_APP_BASE_URL)
