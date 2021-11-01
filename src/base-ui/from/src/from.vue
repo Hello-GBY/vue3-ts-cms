@@ -7,7 +7,7 @@
         </el-form-item>
       </el-col> -->
       <template v-for="item in fromItems" :key="item.label">
-        <el-col :span="8">
+        <el-col v-bind="colLayout">
           <el-form-item :label="item.label" :rules="item.rules">
             <template v-if="item.type == 'input' || item.type == 'password'">
               <el-input
@@ -60,6 +60,16 @@ export default defineComponent({
     labelWidth: {
       type: String,
       default: '100px'
+    },
+    colLayout: {
+      type: Object,
+      default: () => ({
+        xl: 6, // >1920px
+        lg: 8, // >1200px
+        md: 12, // >992px
+        sm: 24, // >768px
+        xs: 24 // < 768px
+      })
     }
   },
   components: {},
