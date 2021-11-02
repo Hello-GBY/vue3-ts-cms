@@ -1,60 +1,21 @@
 <template>
   <div class="user">
-    <div class="search">
-      <uin-from :fromItems="fromItems"></uin-from>
-    </div>
+    <uin-from v-bind="fromConfig"></uin-from>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
-import uinFrom, { IFormItem } from '@/base-ui/from/index'
-
+import uinFrom from '@/base-ui/from/index'
+import { fromConfig } from './config/searchconfig'
 export default defineComponent({
   name: 'user',
   components: {
     uinFrom
   },
   setup() {
-    const fromItems: IFormItem[] = [
-      {
-        label: '用户名',
-        type: 'input',
-        rules: [],
-        placeholder: '请输入用户名'
-      },
-      {
-        label: '密码',
-        type: 'password',
-        placeholder: '请输入密码'
-      },
-      {
-        label: '喜欢的运动',
-        type: 'select',
-        placeholder: '请选择创建时间',
-        options: [
-          {
-            label: '篮球',
-            value: '篮球'
-          },
-          {
-            label: '足球',
-            value: '足球'
-          }
-        ]
-      },
-      {
-        label: '创建时间',
-        type: 'datepicker',
-        otherOptions: {
-          startPlaceholder: '开始时间',
-          endPlaceholder: '结束时间',
-          type: 'daterange'
-        }
-      }
-    ]
     return {
-      fromItems
+      fromConfig
     }
   }
 })
@@ -62,8 +23,6 @@ export default defineComponent({
 
 <style scoped lang="less">
 .user {
-  .search {
-    padding-top: 22px;
-  }
+  padding-top: 22px;
 }
 </style>

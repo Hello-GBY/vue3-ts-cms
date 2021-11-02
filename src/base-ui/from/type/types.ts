@@ -10,3 +10,10 @@ export interface IFormItem {
   options?: any[] // 针对select
   otherOptions?: any // 对于需要一些特殊的属性 例如otherOptions组件
 }
+
+// 定义组件传参接口
+export interface IFormProps {
+  fromItems: IFormItem[]
+  labelWidth?: string
+  colLayout?: any
+}
