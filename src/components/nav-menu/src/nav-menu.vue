@@ -7,7 +7,7 @@
 
     <!-- unique-opened -->
     <el-menu
-      default-active="2"
+      :default-active="menuActive"
       class="el-menu-vertical"
       background-color="#0c2135"
       text-color="#b7bdc3"
@@ -47,7 +47,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
 
@@ -71,9 +71,15 @@ export default defineComponent({
         path: item.url ?? '/not-found'
       })
     }
+
+    const menuActive = '2'
+    const route = useRoute() // 获取当前路由
+    const currentPath = route.path
+
     return {
       userMenus,
-      handleMenuItemClick
+      handleMenuItemClick,
+      menuActive
     }
   }
 })
