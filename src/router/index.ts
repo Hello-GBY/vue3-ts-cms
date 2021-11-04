@@ -42,8 +42,6 @@ router.beforeEach((to) => {
       return firstMenu.path
     }
   }
-
-  console.log('router.getRoutes(): ', router.getRoutes())
 })
 
 export default router
