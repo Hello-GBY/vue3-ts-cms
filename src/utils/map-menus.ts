@@ -41,17 +41,14 @@ export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
 
 // 计算当前活动menusActive
 export function pathMapToMenu(userMenus: any[], currentPath: string): any {
-  console.log('currentPath: ', currentPath)
   // 从 userMenus 查找 匹配的路径
-  console.log('userMenus: ', userMenus)
   for (const menu of userMenus) {
-    if (menu.type === 1) {
-      //
-      const currentMenu = menu.children.find((item: any) => {
-        return item.url == currentPath
-      })
-      if (currentMenu) return currentMenu
+    if (menu.type == '1') {
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+      // 递归出口
+      if (findMenu) return findMenu
+    } else if (menu.type == '2' && menu.url == currentPath) {
+      return menu
     }
   }
-  return ''
 }

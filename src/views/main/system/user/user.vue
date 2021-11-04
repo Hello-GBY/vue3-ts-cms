@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent } from 'vue'
 import uinFrom from '@/base-ui/from/index'
 import { fromConfig } from './config/searchconfig'
 export default defineComponent({
