@@ -45,9 +45,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import { useRouter, useRoute } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menus'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
 
@@ -63,7 +64,7 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const userMenus = computed<any[]>(() => store.state.login.userMenus)
-    const router = useRouter()
+    const router = useRouter() // 全局的 router 实例
     // const userMenu = store
     const handleMenuItemClick = function (item: any) {
       console.log('item: ', item)
@@ -72,10 +73,11 @@ export default defineComponent({
       })
     }
 
-    const menuActive = '2'
-    const route = useRoute() // 获取当前路由
+    const menuActive = ref('2')
+    const route = useRoute() // 当前激活的路由的信息对象
     const currentPath = route.path
-
+    const currentMenu = pathMapToMenu(userMenus.value, currentPath)
+    menuActive.value = currentMenu.id + ''
     return {
       userMenus,
       handleMenuItemClick,
