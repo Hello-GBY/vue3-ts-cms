@@ -68,11 +68,12 @@ export default defineComponent({
     const handleMenuItemClick = (item: any) =>
       router.push({ path: item.url ?? '/not-found' })
 
-    const menuActive = ref('2')
+    const menuActive = ref('1')
     const route = useRoute() // 当前激活的路由的信息对象
     const currentPath = route.path
+    console.log('currentPath: ', currentPath)
     const currentMenu = pathMapToMenu(userMenus.value, currentPath)
-    menuActive.value = currentMenu.id + ''
+    if (currentMenu) menuActive.value = currentMenu.id + ''
 
     return {
       userMenus,

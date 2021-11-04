@@ -1,5 +1,6 @@
 import LocalCache from '@/utils/cache'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { firstMenu } from '@/utils/map-menus'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,7 +36,13 @@ router.beforeEach((to) => {
     if (!LocalCache.getCache('token')) {
       return '/login'
     }
+
+    // 默认打开第一个
+    if (to.path == '/main') {
+      return firstMenu.path
+    }
   }
+
   console.log('router.getRoutes(): ', router.getRoutes())
 })
 

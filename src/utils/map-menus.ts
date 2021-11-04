@@ -10,6 +10,7 @@ import { RouteRecordRaw } from 'vue-router'
     url: "/main/analysis"
 }]
 */
+let firstMenu: any = null
 export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
   const Routers: RouteRecordRaw[] = []
 
@@ -29,6 +30,7 @@ export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
       if (menu.type == 2) {
         const router = AllRoutes.find((router) => router.path == menu.url)
         if (router) Routers.push(router)
+        if (!firstMenu) firstMenu = router
       } else {
         _recurseGetRouter(menu.children)
       }
@@ -52,3 +54,6 @@ export function pathMapToMenu(userMenus: any[], currentPath: string): any {
     }
   }
 }
+
+// 项目根路径时默认打开第一个导航
+export { firstMenu }
