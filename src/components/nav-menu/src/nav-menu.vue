@@ -65,19 +65,15 @@ export default defineComponent({
     const store = useStore()
     const userMenus = computed<any[]>(() => store.state.login.userMenus)
     const router = useRouter() // 全局的 router 实例
-    // const userMenu = store
-    const handleMenuItemClick = function (item: any) {
-      console.log('item: ', item)
-      router.push({
-        path: item.url ?? '/not-found'
-      })
-    }
+    const handleMenuItemClick = (item: any) =>
+      router.push({ path: item.url ?? '/not-found' })
 
     const menuActive = ref('2')
     const route = useRoute() // 当前激活的路由的信息对象
     const currentPath = route.path
     const currentMenu = pathMapToMenu(userMenus.value, currentPath)
     menuActive.value = currentMenu.id + ''
+
     return {
       userMenus,
       handleMenuItemClick,
