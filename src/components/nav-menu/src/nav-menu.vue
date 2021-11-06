@@ -4,7 +4,6 @@
       <img class="img" alt="logo" src="~@/assets/img/vue3logo.svg" />
       <span class="title" v-show="!collapse"> Vue3 + Ts</span>
     </div>
-
     <!-- unique-opened -->
     <el-menu
       :default-active="menuActive"
@@ -48,7 +47,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import { useRouter, useRoute } from 'vue-router'
-import { pathMapToMenu } from '@/utils/map-menus'
+import { pathMapToMenu, pathMapBreadcrumb } from '@/utils/map-menus'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
 
@@ -65,13 +64,17 @@ export default defineComponent({
     const store = useStore()
     const userMenus = computed<any[]>(() => store.state.login.userMenus)
     const router = useRouter() // 全局的 router 实例
-    const handleMenuItemClick = (item: any) =>
-      router.push({ path: item.url ?? '/not-found' })
 
-    const menuActive = ref('1')
+    const handleMenuItemClick = (item: any) => {
+      router.push({ path: item.url ?? '/not-found' })
+      // 设置面包屑
+      const breadcrumbs = pathMapBreadcrumb(userMenus.value, item.url)
+      console.log('breadcrumbs: ', breadcrumbs)
+    }
+
     const route = useRoute() // 当前激活的路由的信息对象
     const currentPath = route.path
-    console.log('currentPath: ', currentPath)
+    const menuActive = ref('1')
     const currentMenu = pathMapToMenu(userMenus.value, currentPath)
     if (currentMenu) menuActive.value = currentMenu.id + ''
 

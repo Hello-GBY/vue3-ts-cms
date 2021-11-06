@@ -6,14 +6,14 @@
       @click="handleFoldClick()"
     ></i>
     <div class="content">
-      <NavBreadcrumb></NavBreadcrumb>
+      <NavBreadcrumb :breadcrumbs="breadcrumbs" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import NavBreadcrumb from './nav-breadcrumb.vue'
+import NavBreadcrumb, { breadcrumbProps } from '@/base-ui/breadcrumb/index'
 
 export default defineComponent({
   name: '',
@@ -29,7 +29,9 @@ export default defineComponent({
       emit('foldChange', isFold.value)
     }
 
-    return { isFold, handleFoldClick }
+    const breadcrumbs: breadcrumbProps = [{ name: '首页' }]
+
+    return { isFold, handleFoldClick, breadcrumbs }
   }
 })
 </script>

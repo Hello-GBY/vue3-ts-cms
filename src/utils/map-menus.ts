@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
+import { breadcrumbProps } from '@/base-ui/breadcrumb/index'
 
 /* userMenus : [{
   children: (2) [{id: 39, url: '/main/analysis/overview', name: '核心技术', sort: 106, type: 2, …}]
@@ -49,6 +50,25 @@ export function pathMapToMenu(userMenus: any[], currentPath: string): any {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       // 递归出口
       if (findMenu) return findMenu
+    } else if (menu.type == '2' && menu.url == currentPath) {
+      return menu
+    }
+  }
+}
+
+// 计算面包屑
+export function pathMapBreadcrumb(userMenus: any[], currentPath: string): any {
+  const breadcrumbs: breadcrumbProps = []
+  // 从 userMenus 查找 匹配的路径
+  for (const menu of userMenus) {
+    if (menu.type == '1') {
+      const findMenu = pathMapBreadcrumb(menu.children ?? [], currentPath)
+      // 递归出口
+      if (findMenu) {
+        breadcrumbs.push({ name: menu.name, path: menu.url })
+        breadcrumbs.push({ name: findMenu.name, path: findMenu.url })
+        return breadcrumbs
+      }
     } else if (menu.type == '2' && menu.url == currentPath) {
       return menu
     }
