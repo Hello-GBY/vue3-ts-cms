@@ -67,9 +67,6 @@ export default defineComponent({
 
     const handleMenuItemClick = (item: any) => {
       router.push({ path: item.url ?? '/not-found' })
-      // 设置面包屑
-      const breadcrumbs = pathMapBreadcrumb(userMenus.value, item.url)
-      console.log('breadcrumbs: ', breadcrumbs)
     }
 
     const route = useRoute() // 当前激活的路由的信息对象

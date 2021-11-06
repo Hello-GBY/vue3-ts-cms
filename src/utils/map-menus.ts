@@ -43,13 +43,21 @@ export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
 }
 
 // 计算当前活动menusActive
-export function pathMapToMenu(userMenus: any[], currentPath: string): any {
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: breadcrumbProps
+): any {
   // 从 userMenus 查找 匹配的路径
   for (const menu of userMenus) {
     if (menu.type == '1') {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       // 递归出口
-      if (findMenu) return findMenu
+      if (findMenu) {
+        breadcrumbs?.push({ name: menu.name, path: menu.url })
+        breadcrumbs?.push({ name: findMenu.name, path: findMenu.url })
+        return findMenu
+      }
     } else if (menu.type == '2' && menu.url == currentPath) {
       return menu
     }
@@ -60,19 +68,8 @@ export function pathMapToMenu(userMenus: any[], currentPath: string): any {
 export function pathMapBreadcrumb(userMenus: any[], currentPath: string): any {
   const breadcrumbs: breadcrumbProps = []
   // 从 userMenus 查找 匹配的路径
-  for (const menu of userMenus) {
-    if (menu.type == '1') {
-      const findMenu = pathMapBreadcrumb(menu.children ?? [], currentPath)
-      // 递归出口
-      if (findMenu) {
-        breadcrumbs.push({ name: menu.name, path: menu.url })
-        breadcrumbs.push({ name: findMenu.name, path: findMenu.url })
-        return breadcrumbs
-      }
-    } else if (menu.type == '2' && menu.url == currentPath) {
-      return menu
-    }
-  }
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
 }
 
 // 项目根路径时默认打开第一个导航

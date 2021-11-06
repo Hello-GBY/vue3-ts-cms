@@ -12,8 +12,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import NavBreadcrumb, { breadcrumbProps } from '@/base-ui/breadcrumb/index'
+import { useRoute } from 'vue-router'
+import { pathMapBreadcrumb } from '@/utils/map-menus'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: '',
@@ -29,8 +32,14 @@ export default defineComponent({
       emit('foldChange', isFold.value)
     }
 
-    const breadcrumbs: breadcrumbProps = [{ name: '首页' }]
-
+    // 计算属性 更改面包屑
+    const store = useStore()
+    const breadcrumbs = computed<breadcrumbProps>(() => {
+      const route = useRoute() // 当前激活的路由的信息对象
+      const currentPath = route.path
+      const userMenus = computed<any[]>(() => store.state.login.userMenus)
+      return pathMapBreadcrumb(userMenus.value, currentPath)
+    })
     return { isFold, handleFoldClick, breadcrumbs }
   }
 })
