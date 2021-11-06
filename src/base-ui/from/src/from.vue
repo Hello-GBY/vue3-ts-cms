@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="userFrom" :label-width="labelWidth">
+  <el-form ref="userFrom" :label-width="labelWidth" v-model="fromData">
     <el-row :gutter="50">
       <!-- <el-col :span="8">
         <el-form-item label="用户名">
@@ -14,15 +14,16 @@
                 :placeholder="item.placeholder"
                 :show-password="item.type === 'password'"
                 v-bind="item.otherOptions"
+                v-model="fromData[`${item.field}`]"
               >
               </el-input>
             </template>
             <template v-else-if="item.type == 'select'">
               <el-select
-                v-model="selectItem"
                 :placeholder="item.placeholder"
                 style="width: 100%"
                 v-bind="item.otherOptions"
+                v-model="fromData[`${item.field}`]"
               >
                 <el-option
                   v-for="ele in item.options || []"
@@ -37,6 +38,7 @@
               <el-date-picker
                 style="width: 100%"
                 v-bind="item.otherOptions"
+                v-model="fromData[`${item.field}`]"
               ></el-date-picker>
             </template>
           </el-form-item>
@@ -47,12 +49,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType, ref } from 'vue'
+import { defineComponent, reactive, PropType } from 'vue'
 import { IFormItem } from '../type/types'
 // PropType 确定传递过来的泛型
 export default defineComponent({
   name: '',
   props: {
+    fromData: {
+      type: Object,
+      require: true,
+      default: () => ({})
+    },
     fromItems: {
       type: Array as PropType<IFormItem[]>,
       default: () => []
@@ -73,10 +80,9 @@ export default defineComponent({
     }
   },
   components: {},
-  setup(props) {
+  setup() {
     const form = reactive({ name: '' })
-    const selectItem = ref('')
-    return { form, selectItem }
+    return { form }
   }
 })
 </script>

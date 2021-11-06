@@ -1,17 +1,21 @@
 import { IFormItem, IFormProps } from '@/base-ui/from/index'
+
 const fromItems: IFormItem[] = [
   {
     label: '用户名',
     type: 'input',
     rules: [],
-    placeholder: '请输入用户名'
+    placeholder: '请输入用户名',
+    field: 'name'
   },
   {
     label: '密码',
     type: 'password',
-    placeholder: '请输入密码'
+    placeholder: '请输入密码',
+    field: 'password'
   },
   {
+    field: 'sport',
     label: '喜欢的运动',
     type: 'select',
     placeholder: '请选择创建时间',
@@ -27,6 +31,7 @@ const fromItems: IFormItem[] = [
     ]
   },
   {
+    field: 'createTime',
     label: '创建时间',
     type: 'datepicker',
     otherOptions: {
@@ -37,13 +42,9 @@ const fromItems: IFormItem[] = [
   }
 ]
 const labelWidth = '100px'
-// const colLayout = {
-//   xs: 8
-// }
 const fromConfig: IFormProps = {
   fromItems,
   labelWidth
-  // colLayout
 }
 
 export { fromConfig }

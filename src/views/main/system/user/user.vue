@@ -1,11 +1,11 @@
 <template>
   <div class="user">
-    <uin-from v-bind="fromConfig"></uin-from>
+    <uin-from v-bind="fromConfig" :fromData="fromData"></uin-from>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import uinFrom from '@/base-ui/from/index'
 import { fromConfig } from './config/searchconfig'
 export default defineComponent({
@@ -14,8 +14,17 @@ export default defineComponent({
     uinFrom
   },
   setup() {
+    const fromData = reactive({
+      id: '',
+      name: '',
+      password: '',
+      sport: '',
+      createTime: ''
+    })
+    console.log('fromData: ', fromData)
     return {
-      fromConfig
+      fromConfig,
+      fromData
     }
   }
 })

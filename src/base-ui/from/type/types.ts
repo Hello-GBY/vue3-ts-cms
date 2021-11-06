@@ -9,6 +9,7 @@ export interface IFormItem {
   placeholder?: any
   options?: any[] // 针对select
   otherOptions?: any // 对于需要一些特殊的属性 例如otherOptions组件
+  field: string
 }
 
 // 定义组件传参接口
