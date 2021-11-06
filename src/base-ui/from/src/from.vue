@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType, computed } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 import { IFormItem } from '../type/types'
 // PropType 确定传递过来的泛型
 export default defineComponent({
@@ -88,12 +88,18 @@ export default defineComponent({
   emits: ['update:modelValue'],
   components: {},
   setup(props, { emit }) {
-    const fromData = computed({
-      get: () => props.modelValue,
-      set: (newValue) => {
-        emit('update:modelValue', newValue)
-      }
+    // const fromData = computed({
+    //   get: () => props.modelValue,
+    //   set: (newValue) => {
+    //     emit('update:modelValue', newValue)
+    //   }
+    // })
+    // 这种情况才是真正的双向绑定
+    const fromData = ref({ ...props.modelValue })
+    watch(fromData, (newValue) => emit('update:modelValue', newValue), {
+      deep: true
     })
+
     return { fromData }
   }
 })
