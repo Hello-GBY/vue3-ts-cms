@@ -49,17 +49,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType } from 'vue'
+import { defineComponent, reactive, PropType, computed } from 'vue'
 import { IFormItem } from '../type/types'
 // PropType 确定传递过来的泛型
 export default defineComponent({
   name: '',
   props: {
-    fromData: {
+    // 双向绑定 默认传递过来的值
+    modelValue: {
       type: Object,
       require: true,
       default: () => ({})
     },
+    // fromData: {
+    //   type: Object,
+    //   require: true,
+    //   default: () => ({})
+    // },
     fromItems: {
       type: Array as PropType<IFormItem[]>,
       default: () => []
@@ -79,10 +85,16 @@ export default defineComponent({
       })
     }
   },
+  emits: ['update:modelValue'],
   components: {},
-  setup() {
-    const form = reactive({ name: '' })
-    return { form }
+  setup(props, { emit }) {
+    const fromData = computed({
+      get: () => props.modelValue,
+      set: (newValue) => {
+        emit('update:modelValue', newValue)
+      }
+    })
+    return { fromData }
   }
 })
 </script>

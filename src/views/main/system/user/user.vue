@@ -1,6 +1,7 @@
 <template>
   <div class="user">
-    <uin-from v-bind="fromConfig" :fromData="fromData"></uin-from>
+    <uin-from v-bind="fromConfig" v-model="fromData"> </uin-from>
+    {{ fromData }}
   </div>
 </template>
 
@@ -21,7 +22,6 @@ export default defineComponent({
       sport: '',
       createTime: ''
     })
-    console.log('fromData: ', fromData)
     return {
       fromConfig,
       fromData
