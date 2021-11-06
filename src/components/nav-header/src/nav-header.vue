@@ -5,15 +5,21 @@
       :class="isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
       @click="handleFoldClick()"
     ></i>
+    <div class="content">
+      <NavBreadcrumb></NavBreadcrumb>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import NavBreadcrumb from './nav-breadcrumb.vue'
 
 export default defineComponent({
   name: '',
-  components: {},
+  components: {
+    NavBreadcrumb
+  },
   emit: ['foldChange'],
   setup(props, { emit }) {
     const isFold = ref(false)
