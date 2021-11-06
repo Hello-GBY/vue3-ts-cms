@@ -1,7 +1,6 @@
 <template>
   <div class="user">
     <uin-from v-bind="fromConfig" v-model="fromData"> </uin-from>
-    {{ fromData }}
   </div>
 </template>
 
