@@ -2,7 +2,7 @@
   <div class="user">
     <uin-from v-bind="fromConfig" v-model="fromData">
       <!-- <slot name="heard">标题</slot> -->
-      <template v-slot:header="itemProps">
+      <template #header="itemProps">
         <h1>Here might be a page title</h1>
         <div>{{ itemProps }}</div>
       </template>
