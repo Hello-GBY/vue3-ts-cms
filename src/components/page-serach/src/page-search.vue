@@ -1,6 +1,6 @@
 <template>
   <!--v-model不建议从 props 中 获取-->
-  <uin-from v-bind="fromConfig" v-model="fromData">
+  <uin-from v-bind="fromConfig" v-model="fromDataProps">
     <!-- <slot name="heard">标题</slot> -->
     <!--itemProps 获取solt 传递过来的值-->
     <!-- <template #header="itemProps"> -->
@@ -59,11 +59,11 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     // 这种情况才是真正的双向绑定
-    const fromData = ref({ ...props.modelValue })
-    watch(fromData, (newValue) => emit('update:modelValue', newValue), {
+    const fromDataProps = ref({ ...props.modelValue })
+    watch(fromDataProps, (newValue) => emit('update:modelValue', newValue), {
       deep: true
     })
-    return { fromData }
+    return { fromDataProps }
   }
 })
 </script>

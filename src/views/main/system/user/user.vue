@@ -2,32 +2,29 @@
   <div class="user">
     <page-search
       :fromConfig="fromConfig"
-      v-model="fromData"
       title="用户管理检索"
-    ></page-search>
+      v-model="searchData"
+    >
+    </page-search>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { fromConfig } from './config/searchconfig'
-import PageSearch from '@/components/page-serach/src/page-search.vue'
+import { fromConfig, fromData } from './config/searchconfig'
+import PageSearch from '@/components/page-serach/index'
+
 export default defineComponent({
   name: 'user',
   components: {
     PageSearch
   },
   setup() {
-    const fromData = reactive({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+    // 绑定表单数据
+    const searchData = reactive(fromData)
     return {
       fromConfig,
-      fromData
+      searchData
     }
   }
 })

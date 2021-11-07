@@ -46,5 +46,12 @@ const fromConfig: IFormProps = {
   fromItems,
   labelWidth
 }
+const fromData = {
+  id: '',
+  name: '',
+  password: '',
+  sport: '',
+  createTime: ''
+}
 
-export { fromConfig }
+export { fromConfig, fromData }
