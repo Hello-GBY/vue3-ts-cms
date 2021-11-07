@@ -1,55 +1,61 @@
 <template>
-  <div class="header">
-    <!--可通过v-bind 将插槽的值传递给调用者-->
-    <slot name="header" v-bind="{ checked }"></slot>
-  </div>
-  <el-form ref="userFrom" :label-width="labelWidth" v-model="fromData">
-    <el-row :gutter="50">
-      <!-- <el-col :span="8">
+  <div class="Ifrom">
+    <div class="header">
+      <!--可通过v-bind 将插槽的值传递给调用者-->
+      <!-- <slot name="header" v-bind="{ checked }"></slot> -->
+      <slot name="header"></slot>
+    </div>
+    <el-form ref="userFrom" :label-width="labelWidth" v-model="fromData">
+      <el-row :gutter="50">
+        <!-- <el-col :span="8">
         <el-form-item label="用户名">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
       </el-col> -->
-      <template v-for="item in fromItems" :key="item.label">
-        <el-col v-bind="colLayout">
-          <el-form-item :label="item.label" :rules="item.rules">
-            <template v-if="item.type == 'input' || item.type == 'password'">
-              <el-input
-                :placeholder="item.placeholder"
-                :show-password="item.type === 'password'"
-                v-bind="item.otherOptions"
-                v-model="fromData[`${item.field}`]"
-              >
-              </el-input>
-            </template>
-            <template v-else-if="item.type == 'select'">
-              <el-select
-                :placeholder="item.placeholder"
-                style="width: 100%"
-                v-bind="item.otherOptions"
-                v-model="fromData[`${item.field}`]"
-              >
-                <el-option
-                  v-for="ele in item.options || []"
-                  :key="ele.value"
-                  :value="ele.value"
-                  :label="ele.label"
+        <template v-for="item in fromItems" :key="item.label">
+          <el-col v-bind="colLayout">
+            <el-form-item :label="item.label" :rules="item.rules">
+              <template v-if="item.type == 'input' || item.type == 'password'">
+                <el-input
+                  :placeholder="item.placeholder"
+                  :show-password="item.type === 'password'"
+                  v-bind="item.otherOptions"
+                  v-model="fromData[`${item.field}`]"
                 >
-                </el-option>
-              </el-select>
-            </template>
-            <template v-else-if="item.type == 'datepicker'">
-              <el-date-picker
-                style="width: 100%"
-                v-bind="item.otherOptions"
-                v-model="fromData[`${item.field}`]"
-              ></el-date-picker>
-            </template>
-          </el-form-item>
-        </el-col>
-      </template>
-    </el-row>
-  </el-form>
+                </el-input>
+              </template>
+              <template v-else-if="item.type == 'select'">
+                <el-select
+                  :placeholder="item.placeholder"
+                  style="width: 100%"
+                  v-bind="item.otherOptions"
+                  v-model="fromData[`${item.field}`]"
+                >
+                  <el-option
+                    v-for="ele in item.options || []"
+                    :key="ele.value"
+                    :value="ele.value"
+                    :label="ele.label"
+                  >
+                  </el-option>
+                </el-select>
+              </template>
+              <template v-else-if="item.type == 'datepicker'">
+                <el-date-picker
+                  style="width: 100%"
+                  v-bind="item.otherOptions"
+                  v-model="fromData[`${item.field}`]"
+                ></el-date-picker>
+              </template>
+            </el-form-item>
+          </el-col>
+        </template>
+      </el-row>
+    </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -110,4 +116,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.Ifrom {
+  padding: 25px 25px 25px 25px;
+}
+</style>

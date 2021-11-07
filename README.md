@@ -81,6 +81,7 @@ vue3.0全局和按需引入element-plus
 https://blog.csdn.net/weixin_38687522/article/details/117463124
 
 采坑 和 最新的官网有冲突
+使用 icon 时 npm install @element-plus/icons
 最新的官网 不能动态引入 就会没有样式
 目前 这两种方式有冲突
 
