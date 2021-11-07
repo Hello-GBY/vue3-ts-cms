@@ -29,7 +29,7 @@ module.exports = {
         resolvers: [ElementPlusResolver()]
       })
     )
-    // return config
+    return config
   }
   //链式调用
   // chainWebpack: (config) => {

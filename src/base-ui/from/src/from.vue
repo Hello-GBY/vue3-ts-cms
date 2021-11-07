@@ -1,4 +1,8 @@
 <template>
+  <div class="header">
+    <!--可通过v-bind 将插槽的值传递给调用者-->
+    <slot name="header" v-bind="{ checked }"></slot>
+  </div>
   <el-form ref="userFrom" :label-width="labelWidth" v-model="fromData">
     <el-row :gutter="50">
       <!-- <el-col :span="8">
@@ -99,8 +103,9 @@ export default defineComponent({
     watch(fromData, (newValue) => emit('update:modelValue', newValue), {
       deep: true
     })
+    const checked = false
 
-    return { fromData }
+    return { fromData, checked }
   }
 })
 </script>
