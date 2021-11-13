@@ -19,7 +19,7 @@ import { defineComponent, reactive, ref } from 'vue'
 import { rules } from '@/views/login/config/account-config'
 import { ElForm } from 'element-plus'
 import LocalCahe from '@/utils/cache'
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: '',
