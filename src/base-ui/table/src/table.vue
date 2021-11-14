@@ -1,5 +1,17 @@
 <template>
-  <el-table :data="tableData" border style="width: 100%">
+  <el-table
+    :data="tableData"
+    border
+    style="width: 100%"
+    @selection-change="selectionChange"
+  >
+    <el-table-column
+      align="center"
+      v-if="showSelectColumn"
+      width="80"
+      type="selection"
+    >
+    </el-table-column>
     <!--注意这里 是  type="index"-->
     <el-table-column
       align="center"
@@ -38,11 +50,22 @@ export default defineComponent({
     },
     showIndexColumn: {
       type: Boolean,
-      default: () => false
+      default: false
+    },
+    showSelectColumn: {
+      type: Boolean,
+      default: true
     }
   },
-  setup() {
-    return {}
+  emits: ['selectionChange'],
+  setup(props, { emit }) {
+    function selectionChange(value: any): void {
+      console.log('value: ', value)
+      // 不是通过返回 进行给父组件传递值
+      // return value
+      emit('selectionChange', value)
+    }
+    return { selectionChange }
   }
 })
 </script>

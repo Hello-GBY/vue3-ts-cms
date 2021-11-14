@@ -11,6 +11,7 @@
         :data="userList"
         :columns="columns"
         :showIndexColumn="showIndexColumn"
+        @selectionChange="selectionChange"
       >
         <template #enable="scope">
           <el-button
@@ -103,13 +104,18 @@ export default defineComponent({
 
     const showIndexColumn = true
 
+    function selectionChange(val: any): void {
+      console.log('user vue -val: ', val)
+    }
+
     return {
       fromConfig,
       searchData,
       userList,
       columns,
       userCount,
-      showIndexColumn
+      showIndexColumn,
+      selectionChange
     }
   }
 })
