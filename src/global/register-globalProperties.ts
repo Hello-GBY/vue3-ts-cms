@@ -1,4 +1,4 @@
-import formatUtcFormat from '@/utils/fromat-utc'
+import formatUtcFormat from '@/utils/date-fromat'
 import { App } from 'vue'
 
 export default function registerGlobalProperties(app: App): void {

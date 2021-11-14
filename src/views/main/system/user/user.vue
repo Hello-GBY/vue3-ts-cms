@@ -7,7 +7,11 @@
     >
     </page-search>
     <div class="content">
-      <PageTable :data="userList" :columns="columns">
+      <PageTable
+        :data="userList"
+        :columns="columns"
+        :showIndexColumn="showIndexColumn"
+      >
         <template #enable="scope">
           <el-button
             plain
@@ -96,12 +100,16 @@ export default defineComponent({
       },
       { prop: 'updateAt', label: '更新时间', minWidth: 255 }
     ]
+
+    const showIndexColumn = true
+
     return {
       fromConfig,
       searchData,
       userList,
       columns,
-      userCount
+      userCount,
+      showIndexColumn
     }
   }
 })
