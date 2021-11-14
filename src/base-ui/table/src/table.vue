@@ -54,13 +54,12 @@ export default defineComponent({
     },
     showSelectColumn: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   emits: ['selectionChange'],
   setup(props, { emit }) {
     function selectionChange(value: any): void {
-      console.log('value: ', value)
       // 不是通过返回 进行给父组件传递值
       // return value
       emit('selectionChange', value)

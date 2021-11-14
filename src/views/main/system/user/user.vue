@@ -27,7 +27,6 @@
         </template>
       </PageTable>
     </div>
-
     <div class="page-pagination">
       <el-pagination
         background
@@ -80,8 +79,6 @@ export default defineComponent({
     // 要通过计算属性来监听获取到
     const userList = computed(() => store.state.system.userList)
     const userCount = computed(() => store.state.system.userCount)
-    console.log('userCount: ', userCount.value)
-    console.log('userList: ', userList)
 
     const columns = [
       // { prop: 'id', label: '序号', width: 80 },
@@ -105,7 +102,7 @@ export default defineComponent({
     const showIndexColumn = true
 
     function selectionChange(val: any): void {
-      console.log('user vue -val: ', val)
+      console.log('val: ', val)
     }
 
     return {
