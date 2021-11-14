@@ -8,7 +8,12 @@
     </page-search>
     <div class="content">
       <PageTable :data="userList" :columns="columns">
-        <template #enable> wer </template>
+        <template #enable="scope">
+          <el-button>{{ scope.row.enable }}</el-button>
+        </template>
+        <template #createAt="scope">
+          <el-button>{{ scope.row.createAt }}</el-button>
+        </template>
       </PageTable>
     </div>
 
@@ -59,7 +64,7 @@ export default defineComponent({
     const userList = computed(() => store.state.system.userList)
     const userCount = computed(() => store.state.system.userCount)
     console.log('userCount: ', userCount.value)
-    console.log('userList: ', userList.value)
+    console.log('userList: ', userList)
 
     const columns = [
       // { prop: 'id', label: '序号', width: 80 },
@@ -71,7 +76,12 @@ export default defineComponent({
       },
       { prop: 'cellphone', label: '电话号码', minWidth: 130 },
       { prop: 'enable', label: '状态', width: 80, slotName: 'enable' },
-      { prop: 'createAt', label: '创建时间', minWidth: 255 },
+      {
+        prop: 'createAt',
+        label: '创建时间',
+        minWidth: 255,
+        slotName: 'createAt'
+      },
       { prop: 'updateAt', label: '更新时间', minWidth: 255 }
     ]
     return {

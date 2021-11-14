@@ -3,7 +3,7 @@
     <template v-for="column in columns" :key="column.prop">
       <el-table-column v-bind="column" align="center">
         <template #default="scope">
-          <slot :name="column.slotName" :row="scope">
+          <slot :name="column.slotName" :row="scope.row">
             {{ scope.row[column.prop] }}
           </slot>
         </template>
