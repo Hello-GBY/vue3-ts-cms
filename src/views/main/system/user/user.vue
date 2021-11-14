@@ -9,10 +9,16 @@
     <div class="content">
       <PageTable :data="userList" :columns="columns">
         <template #enable="scope">
-          <el-button>{{ scope.row.enable }}</el-button>
+          <el-button
+            plain
+            size="mini"
+            :type="scope.row.enable ? 'success' : 'danger'"
+          >
+            {{ scope.row.enable ? '启动' : '禁用' }}
+          </el-button>
         </template>
         <template #createAt="scope">
-          <el-button>{{ scope.row.createAt }}</el-button>
+          <strong>{{ $filters.formatTime(scope.row.createAt) }}</strong>
         </template>
       </PageTable>
     </div>
@@ -30,6 +36,12 @@
 </template>
 
 <script lang="ts">
+// 定义了全局方法之后需要扩充类型
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $filters: any
+  }
+}
 import { computed, defineComponent, reactive } from 'vue'
 import { fromConfig, fromData } from './config/searchconfig'
 import PageSearch from '@/components/page-serach/index'
@@ -75,7 +87,7 @@ export default defineComponent({
         minWidth: 150
       },
       { prop: 'cellphone', label: '电话号码', minWidth: 130 },
-      { prop: 'enable', label: '状态', width: 80, slotName: 'enable' },
+      { prop: 'enable', label: '状态', minWidth: 90, slotName: 'enable' },
       {
         prop: 'createAt',
         label: '创建时间',
