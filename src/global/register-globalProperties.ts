@@ -1,3 +1,4 @@
+import formatUtcFormat from '@/utils/fromat-utc'
 import { App } from 'vue'
 
 export default function registerGlobalProperties(app: App): void {
@@ -5,9 +6,9 @@ export default function registerGlobalProperties(app: App): void {
     foo(val: string) {
       console.log('val: ', val)
     },
-    formatTime(value: string) {
+    formatTime(utcString: string) {
       // 返回数据
-      return value + 'sdf'
+      return formatUtcFormat(utcString)
     }
   }
 }
