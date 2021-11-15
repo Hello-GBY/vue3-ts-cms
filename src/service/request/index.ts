@@ -1,6 +1,6 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
-import type { AxiosInstance, AxiosRequestConfig } from 'axios'
+// import Cookies from 'js-cookie'
+import type { AxiosInstance } from 'axios'
 import type { InterceptorsHooks, MyAxiosRequestConfig } from './type'
 import { ElLoading } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/components/loading/src/loading.type'
@@ -99,19 +99,19 @@ class MyRequest {
     // })
   }
 
-  get<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
+  get<T = any>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'GET' })
   }
-  post<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
+  post<T = any>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'POST' })
   }
-  delete<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'DELETE' })
   }
-  put<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
+  put<T = any>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'PUT' })
   }
-  patch<T>(config: MyAxiosRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: MyAxiosRequestConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'PATCH' })
   }
 }

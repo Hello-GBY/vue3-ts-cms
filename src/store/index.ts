@@ -1,6 +1,7 @@
-import { createStore } from 'vuex'
-import { IRootState } from './types'
+import { createStore, Store, useStore as useVuexStore } from 'vuex'
+import { IRootState, IStoreType } from './types'
 import loginModel from './login/login'
+import systemModel from './main/system/system'
 
 const store = createStore<IRootState>({
   state: () => {
@@ -12,7 +13,8 @@ const store = createStore<IRootState>({
   mutations: {},
   actions: {},
   modules: {
-    login: loginModel
+    login: loginModel,
+    system: systemModel
   }
 })
 export default store
@@ -21,4 +23,8 @@ export default store
 // 防止用户刷新之后 vuex 里的值没有了, localStorage 里面还有值
 export function setupStoreByLocalStorage(): void {
   store.dispatch('login/setStoreByLocalStorage')
+}
+
+export function useStore(): Store<IStoreType> {
+  return useVuexStore<IStoreType>()
 }

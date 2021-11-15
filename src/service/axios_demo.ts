@@ -50,26 +50,26 @@ interface dataType {
   returnCode: string
   success: true
 }
-MyRequest.request<dataType>({
-  url: '/home/multidata',
-  method: 'get',
-  interceptors: {
-    requestInterceptors: (config) => {
-      const Token = ''
-      const config_: any = config
-      if (Token) {
-        config_.headers.Authorization = 'token'
-      }
-      return config
-    }
-  },
-  showLoading: true
-}).then((res) => {
-  console.log('res: ', res)
-})
+// MyRequest.request<dataType>({
+//   url: '/home/multidata',
+//   method: 'get',
+//   interceptors: {
+//     requestInterceptors: (config) => {
+//       const Token = ''
+//       const config_: any = config
+//       if (Token) {
+//         config_.headers.Authorization = 'token'
+//       }
+//       return config
+//     }
+//   },
+//   showLoading: true
+// }).then((res) => {
+//   console.log('res: ', res)
+// })
 
-MyRequest.get({
-  url: '/home/multidata'
-}).then((res) => {
-  console.log('res: ', res)
-})
+// MyRequest.get({
+//   url: '/home/multidata'
+// }).then((res) => {
+//   console.log('res: ', res)
+// })

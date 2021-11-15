@@ -1,5 +1,6 @@
 import LocalCache from '@/utils/cache'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { firstMenu } from '@/utils/map-menus'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,7 +15,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/main',
     name: 'main',
-    component: () => import('@/views/main/main.vue')
+    component: () => import('@/views/main/main.vue'),
+    children: []
+  },
+  {
+    path: '/:pathMach(.*)*',
+    component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 
@@ -23,12 +29,17 @@ const router = createRouter({
   routes
 })
 
+// 导航守卫
 router.beforeEach((to) => {
   if (to.path !== '/login') {
     // 判断是否登录
-    console.log('LocalCache.getCache): ', LocalCache.getCache('token'))
     if (!LocalCache.getCache('token')) {
       return '/login'
+    }
+
+    // 默认打开第一个
+    if (to.path == '/main') {
+      return firstMenu.path
     }
   }
 })

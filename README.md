@@ -81,6 +81,7 @@ vue3.0全局和按需引入element-plus
 https://blog.csdn.net/weixin_38687522/article/details/117463124
 
 采坑 和 最新的官网有冲突
+使用 icon 时 npm install @element-plus/icons
 最新的官网 不能动态引入 就会没有样式
 目前 这两种方式有冲突
 
@@ -89,9 +90,15 @@ https://blog.csdn.net/weixin_38687522/article/details/117463124
 npm i normalize.css -save
 ```
 
+### 动态路由
+权限管理 这块需要回顾
 
 ### 采坑
 ## 在ts文件中引入外部模块的时候报错，
 在打vscode时会提示 一个以下内容的弹窗 选 disable 即可
 A package.json file is detected in the project. This project may be a Node.js project. Do you want to disable this extension?
 
+
+
+### 待优化
+main.vue 下的样式 移动到 base.css 中
