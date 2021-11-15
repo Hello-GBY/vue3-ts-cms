@@ -15,8 +15,8 @@
         :title="title"
       >
         <template #headerHandler>
-          <el-button>新增用户</el-button>
-          <el-button icon="el-icon-refresh"></el-button>
+          <el-button size="mini">新增用户</el-button>
+          <el-button icon="el-icon-refresh" size="mini"></el-button>
         </template>
         <template #enable="scope">
           <el-button
