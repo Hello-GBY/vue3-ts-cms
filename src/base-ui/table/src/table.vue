@@ -1,10 +1,20 @@
 <template>
+  <!--表头-->
+  <div class="header">
+    <slot name="header">
+      <div class="title">{{ title }}</div>
+      <div class="handler">
+        <slot name="headerHandler"> </slot>
+      </div>
+    </slot>
+  </div>
   <el-table
     :data="tableData"
     border
     style="width: 100%"
     @selection-change="selectionChange"
   >
+    <!--多选控制-->
     <el-table-column
       align="center"
       v-if="showSelectColumn"
@@ -13,6 +23,7 @@
     >
     </el-table-column>
     <!--注意这里 是  type="index"-->
+    <!--序号控制-->
     <el-table-column
       align="center"
       v-if="showIndexColumn"
@@ -31,6 +42,14 @@
       </el-table-column>
     </template>
   </el-table>
+  <div class="footer">
+    <slot name="footer">
+      <div class="title">{{ title }}</div>
+      <div class="handler">
+        <slot name="footerHandler"> </slot>
+      </div>
+    </slot>
+  </div>
 </template>
 
 <script lang="ts">
@@ -55,13 +74,17 @@ export default defineComponent({
     showSelectColumn: {
       type: Boolean,
       default: false
+    },
+    title: {
+      type: String,
+      default: ''
     }
   },
   emits: ['selectionChange'],
   setup(props, { emit }) {
+    console.log('props: ', props)
     function selectionChange(value: any): void {
       // 不是通过返回 进行给父组件传递值
-      // return value
       emit('selectionChange', value)
     }
     return { selectionChange }

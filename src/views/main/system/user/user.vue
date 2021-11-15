@@ -8,11 +8,16 @@
     </page-search>
     <div class="content">
       <PageTable
-        :data="userList"
+        :tableData="userList"
         :columns="columns"
         :showIndexColumn="showIndexColumn"
         @selectionChange="selectionChange"
+        :title="title"
       >
+        <template #headerHandler>
+          <el-button>新增用户</el-button>
+          <el-button icon="el-icon-refresh"></el-button>
+        </template>
         <template #enable="scope">
           <el-button
             plain
@@ -24,6 +29,14 @@
         </template>
         <template #createAt="scope">
           <strong>{{ $filters.formatTime(scope.row.createAt) }}</strong>
+        </template>
+        <template #handler>
+          <el-button size="mini" icon="el-icon-edit" type="text" plain
+            >编辑</el-button
+          >
+          <el-button size="mini" icon="el-icon-delete" type="text" plain
+            >删除</el-button
+          >
         </template>
       </PageTable>
     </div>
@@ -78,11 +91,12 @@ export default defineComponent({
 
     // 要通过计算属性来监听获取到
     const userList = computed(() => store.state.system.userList)
+    console.log('userList: ', userList)
     const userCount = computed(() => store.state.system.userCount)
 
     const columns = [
       // { prop: 'id', label: '序号', width: 80 },
-      { prop: 'name', label: '用户名', minWidth: 180 },
+      { prop: 'name', label: '用户名', minWidth: 120 },
       {
         prop: 'realname',
         label: '真实姓名',
@@ -93,13 +107,15 @@ export default defineComponent({
       {
         prop: 'createAt',
         label: '创建时间',
-        minWidth: 255,
+        minWidth: 220,
         slotName: 'createAt'
       },
-      { prop: 'updateAt', label: '更新时间', minWidth: 255 }
+      { prop: 'updateAt', label: '更新时间', minWidth: 220 },
+      { label: '操作', slotName: 'handler', minWidth: 150 }
     ]
 
     const showIndexColumn = true
+    const title = '这是标题'
 
     function selectionChange(val: any): void {
       console.log('val: ', val)
@@ -112,7 +128,8 @@ export default defineComponent({
       columns,
       userCount,
       showIndexColumn,
-      selectionChange
+      selectionChange,
+      title
     }
   }
 })
