@@ -44,10 +44,15 @@
   </el-table>
   <div class="footer">
     <slot name="footer">
-      <div class="title">{{ title }}</div>
-      <div class="handler">
-        <slot name="footerHandler"> </slot>
-      </div>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        v-model:current-page="currentPage1"
+        :page-size="100"
+        layout="total, prev, pager, next"
+        :total="1000"
+      >
+      </el-pagination>
     </slot>
   </div>
 </template>

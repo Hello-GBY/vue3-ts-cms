@@ -12,6 +12,7 @@
         :columns="columns"
         :showIndexColumn="showIndexColumn"
         @selectionChange="selectionChange"
+        :showSelectColumn="showSelectColumn"
         :title="title"
       >
         <template #headerHandler>
@@ -28,7 +29,10 @@
           </el-button>
         </template>
         <template #createAt="scope">
-          <strong>{{ $filters.formatTime(scope.row.createAt) }}</strong>
+          <span>{{ $filters.formatTime(scope.row.createAt) }}</span>
+        </template>
+        <template #updateAt="scope">
+          <slot>{{ $filters.formatTime(scope.row.updateAt) }}</slot>
         </template>
         <template #handler>
           <el-button size="mini" icon="el-icon-edit" type="text" plain
@@ -39,15 +43,6 @@
           >
         </template>
       </PageTable>
-    </div>
-    <div class="page-pagination">
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="userCount"
-        :page-size="10"
-      >
-      </el-pagination>
     </div>
   </div>
 </template>
@@ -60,9 +55,13 @@ declare module '@vue/runtime-core' {
   }
 }
 import { computed, defineComponent, reactive } from 'vue'
+
 import { fromConfig, fromData } from './config/searchconfig'
-import PageSearch from '@/components/page-serach/index'
+import contentTableConfig from './config/contentconfig'
+
 import { useStore } from '@/store'
+
+import PageSearch from '@/components/page-serach/index'
 import PageTable from '@/base-ui/table'
 
 export default defineComponent({
@@ -91,31 +90,7 @@ export default defineComponent({
 
     // 要通过计算属性来监听获取到
     const userList = computed(() => store.state.system.userList)
-    console.log('userList: ', userList)
     const userCount = computed(() => store.state.system.userCount)
-
-    const columns = [
-      // { prop: 'id', label: '序号', width: 80 },
-      { prop: 'name', label: '用户名', minWidth: 120 },
-      {
-        prop: 'realname',
-        label: '真实姓名',
-        minWidth: 150
-      },
-      { prop: 'cellphone', label: '电话号码', minWidth: 130 },
-      { prop: 'enable', label: '状态', minWidth: 90, slotName: 'enable' },
-      {
-        prop: 'createAt',
-        label: '创建时间',
-        minWidth: 220,
-        slotName: 'createAt'
-      },
-      { prop: 'updateAt', label: '更新时间', minWidth: 220 },
-      { label: '操作', slotName: 'handler', minWidth: 150 }
-    ]
-
-    const showIndexColumn = true
-    const title = '这是标题'
 
     function selectionChange(val: any): void {
       console.log('val: ', val)
@@ -125,11 +100,12 @@ export default defineComponent({
       fromConfig,
       searchData,
       userList,
-      columns,
-      userCount,
-      showIndexColumn,
       selectionChange,
-      title
+      userCount,
+      columns: contentTableConfig.columns,
+      showIndexColumn: contentTableConfig.showIndexColumn,
+      showSelectColumn: contentTableConfig.showSelectColumn,
+      title: contentTableConfig.title
     }
   }
 })
