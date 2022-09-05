@@ -28,4 +28,4 @@ const contentTableConfig = {
   showSelectColumn: true
 }
 
-export default contentTableConfig
+export { contentTableConfig }

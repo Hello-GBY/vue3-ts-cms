@@ -1,3 +1,3 @@
-import PageContent from './src/page-content.vue'
+import PageContent from './src/pagecontent.vue'
 
 export default PageContent

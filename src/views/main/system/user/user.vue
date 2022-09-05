@@ -6,44 +6,10 @@
       v-model="searchData"
     >
     </page-search>
-    <div class="content">
-      <PageTable
-        :tableData="userList"
-        :columns="columns"
-        :showIndexColumn="showIndexColumn"
-        @selectionChange="selectionChange"
-        :showSelectColumn="showSelectColumn"
-        :title="title"
-      >
-        <template #headerHandler>
-          <el-button size="mini">新增用户</el-button>
-          <el-button icon="el-icon-refresh" size="mini"></el-button>
-        </template>
-        <template #enable="scope">
-          <el-button
-            plain
-            size="mini"
-            :type="scope.row.enable ? 'success' : 'danger'"
-          >
-            {{ scope.row.enable ? '启动' : '禁用' }}
-          </el-button>
-        </template>
-        <template #createAt="scope">
-          <span>{{ $filters.formatTime(scope.row.createAt) }}</span>
-        </template>
-        <template #updateAt="scope">
-          <slot>{{ $filters.formatTime(scope.row.updateAt) }}</slot>
-        </template>
-        <template #handler>
-          <el-button size="mini" icon="el-icon-edit" type="text" plain
-            >编辑</el-button
-          >
-          <el-button size="mini" icon="el-icon-delete" type="text" plain
-            >删除</el-button
-          >
-        </template>
-      </PageTable>
-    </div>
+    <page-content
+      :contentTableConfig="contentTableConfig"
+      :pageName="pageName"
+    ></page-content>
   </div>
 </template>
 
@@ -57,18 +23,18 @@ declare module '@vue/runtime-core' {
 import { computed, defineComponent, reactive } from 'vue'
 
 import { fromConfig, fromData } from './config/searchconfig'
-import contentTableConfig from './config/contentconfig'
+import { contentTableConfig } from './config/contentconfig'
 
 import { useStore } from '@/store'
 
 import PageSearch from '@/components/page-serach/index'
-import PageTable from '@/base-ui/table'
+import PageContent from '@/components/page-content/index'
 
 export default defineComponent({
   name: 'user',
   components: {
     PageSearch,
-    PageTable
+    PageContent
   },
   setup() {
     // 绑定表单数据
@@ -95,17 +61,16 @@ export default defineComponent({
     function selectionChange(val: any): void {
       console.log('val: ', val)
     }
-
+    const pageName = 'user'
+    console.log('contentTableConfig: ', contentTableConfig)
     return {
       fromConfig,
       searchData,
       userList,
       selectionChange,
       userCount,
-      columns: contentTableConfig.columns,
-      showIndexColumn: contentTableConfig.showIndexColumn,
-      showSelectColumn: contentTableConfig.showSelectColumn,
-      title: contentTableConfig.title
+      contentTableConfig,
+      pageName
     }
   }
 })
