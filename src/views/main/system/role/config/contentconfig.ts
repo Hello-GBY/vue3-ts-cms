@@ -7,13 +7,13 @@ export const contentTableConfig: any = {
       prop: 'createAt',
       label: '创建时间',
       minWidth: '250',
-      slotname: 'createAt'
+      slotName: 'createAt'
     },
     {
       prop: 'updateAt',
       label: '更新时间',
       minWidth: '250',
-      slotname: 'updateAt'
+      slotName: 'updateAt'
     },
     { label: '操作', minWidth: '120', slotName: 'handler' }
   ],

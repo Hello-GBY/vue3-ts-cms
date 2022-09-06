@@ -67,7 +67,9 @@ export default defineComponent({
         size: 10
       }
     })
-    const userList = computed(() => store.state.system.userList)
+    const userList = computed(() =>
+      store.getters[`system/pageListData`](props.pageName)
+    )
     return { userList }
   }
 })
