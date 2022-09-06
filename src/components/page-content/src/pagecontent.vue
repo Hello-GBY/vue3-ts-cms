@@ -1,14 +1,12 @@
 !
 <template>
   <div class="content">
-    <PageTable
-      :tableData="userList"
-      :columns="contentTableConfig.columns"
-      :showIndexColumn="contentTableConfig.showIndexColumn"
+    <PageTable :tableData="userList" v-bind="contentTableConfig">
+      <!-- :columns="contentTableConfig.columns" -->
+      <!-- :showIndexColumn="contentTableConfig.showIndexColumn"
       @selectionChange="contentTableConfig.selectionChange"
-      :showSelectColumn="contentTableConfig.showSelectColumn"
-      :title="contentTableConfig.title"
-    >
+      :showSelectColumn="contentTableConfig.showSelectColumn" -->
+      <!-- :title="contentTableConfig.title" -->
       <template #headerHandler>
         <el-button size="mini">新增用户</el-button>
         <el-button icon="el-icon-refresh" size="mini"></el-button>
@@ -59,11 +57,11 @@ export default defineComponent({
       type: String
     }
   },
-  setup() {
+  setup(props) {
     const store = useStore()
 
     store.dispatch('system/getPageListAction', {
-      queryUrl: '/users/list',
+      pageName: props.pageName,
       queryInfo: {
         offset: 0,
         size: 10

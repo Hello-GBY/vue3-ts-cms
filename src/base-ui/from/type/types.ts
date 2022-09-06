@@ -14,7 +14,9 @@ export interface IFormItem {
 
 // 定义组件传参接口
 export interface IFormProps {
+  title?: string
   fromItems: IFormItem[]
   labelWidth?: string
+  itemStyle?: any
   colLayout?: any
 }

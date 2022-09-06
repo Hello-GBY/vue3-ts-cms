@@ -39,36 +39,34 @@ export default defineComponent({
   setup() {
     // 绑定表单数据
     const searchData = reactive(fromData)
-    const store = useStore()
+    // const store = useStore()
 
-    // 请求
-    store.dispatch('system/getPageListAction', {
-      queryUrl: '/users/list',
-      queryInfo: {
-        offset: 0,
-        size: 10
-      }
-    })
+    // // 请求
+    // store.dispatch('system/getPageListAction', {
+    //   // queryUrl: '/users/list',
+    //   queryName: 'users',
+    //   queryInfo: {
+    //     offset: 0,
+    //     size: 10
+    //   }
+    // })
 
     // 修改 store.state.system. 下的值是通过请求之后 获取的
     // 下面这个值打印的时候并没有赋值上去
     // store.state.system.userList
 
     // 要通过计算属性来监听获取到
-    const userList = computed(() => store.state.system.userList)
-    const userCount = computed(() => store.state.system.userCount)
+    // const userList = computed(() => store.state.system.userList)
+    // const userCount = computed(() => store.state.system.userCount)
 
     function selectionChange(val: any): void {
       console.log('val: ', val)
     }
     const pageName = 'user'
-    console.log('contentTableConfig: ', contentTableConfig)
     return {
       fromConfig,
       searchData,
-      userList,
       selectionChange,
-      userCount,
       contentTableConfig,
       pageName
     }

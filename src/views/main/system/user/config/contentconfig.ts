@@ -1,4 +1,4 @@
-const contentTableConfig = {
+const contentTableConfig: any = {
   title: '用户列表',
   columns: [
     // { prop: 'id', label: '序号', width: 80 },
