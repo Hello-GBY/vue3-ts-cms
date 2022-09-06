@@ -42,17 +42,9 @@ const systemModel: Module<ISystemState, IRootState> = {
   },
   actions: {
     async getPageListAction({ commit }, playLoad: any) {
-      let pageUrl = ''
       const pageName = playLoad.pageName
-      console.log('pageName: ', pageName)
+      const pageUrl = `/${pageName}/List`
       const firstUpperPageName = firstUpperCase(pageName)
-      switch (pageName) {
-        case 'user':
-          pageUrl = '/users/list'
-          break
-        case 'role':
-          pageUrl = '/role/list'
-      }
 
       // 拿到要请求的参数 调用service 来发送服务请求
       const pageResult = await getPageListData(pageUrl, playLoad.queryInfo)
