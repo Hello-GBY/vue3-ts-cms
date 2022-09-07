@@ -48,7 +48,7 @@ const systemModel: Module<ISystemState, IRootState> = {
 
       // 拿到要请求的参数 调用service 来发送服务请求
       const pageResult = await getPageListData(pageUrl, playLoad.queryInfo)
-      const { list, totalCount } = pageResult.data
+      const { list, totalCount } = pageResult?.data || {}
 
       commit(`change${firstUpperPageName}List`, list)
       commit(`change${firstUpperPageName}Count`, totalCount)

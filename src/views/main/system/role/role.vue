@@ -1,6 +1,6 @@
 <template>
   <div class="role">
-    <page-search :fromConfig="fromConfig"></page-search>
+    <page-search :fromConfig="fromConfig" v-model="searchData"></page-search>
     <page-content
       :contentTableConfig="contentTableConfig"
       pageName="role"
@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import pageSearch from '@/components/page-serach'
 import pageContent from '@/components/page-content'
-import { fromConfig } from './config/searchconfig'
+import { fromConfig, fromData } from './config/searchconfig'
 import { contentTableConfig } from './config/contentconfig'
 
 export default defineComponent({
@@ -22,8 +22,11 @@ export default defineComponent({
     pageContent
   },
   setup() {
+    // 绑定表单数据
+    const searchData = reactive(fromData)
     return {
       contentTableConfig,
+      searchData,
       fromConfig
     }
   }

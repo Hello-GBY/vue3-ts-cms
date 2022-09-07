@@ -10,11 +10,15 @@
     <template #footer>
       <!--  -->
       <div class="footer-button">
-        <el-button>
-          <el-icon class="elIcon"><RefreshRight /></el-icon>
+        <el-button @click="handleRestClick">
+          <el-icon class="elIcon"> <RefreshRight /></el-icon>
           重置
         </el-button>
-        <el-button type="primary" icon="refresh-right">
+        <el-button
+          type="primary"
+          icon="refresh-right"
+          @click="handleQueryClick"
+        >
           <el-icon class="elIcon"><Search /></el-icon>
           提交
         </el-button>
@@ -56,14 +60,30 @@ export default defineComponent({
       default: ''
     }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'resetBthClick', 'queryBthClick'],
   setup(props, { emit }) {
     // 这种情况才是真正的双向绑定
     const fromDataProps = ref({ ...props.modelValue })
+    console.log('fromDataProps: ', fromDataProps.value)
     watch(fromDataProps, (newValue) => emit('update:modelValue', newValue), {
       deep: true
     })
-    return { fromDataProps }
+
+    // 点击重置
+    const handleRestClick = () => {
+      for (const key in fromDataProps.value) {
+        fromDataProps.value[`${key}`] = props.modelValue[key]
+      }
+      emit('resetBthClick')
+    }
+
+    // 点击了搜索
+    const handleQueryClick = () => {
+      console.log('点击了搜索')
+      emit('queryBthClick', fromDataProps.value)
+    }
+    // 点击重置的时候
+    return { fromDataProps, handleRestClick, handleQueryClick }
   }
 })
 </script>

@@ -1,5 +1,5 @@
 import { IFormProps } from '@/base-ui/from'
-export const fromConfig: IFormProps = {
+const fromConfig: IFormProps = {
   labelWidth: '120px',
   fromItems: [
     {
@@ -26,3 +26,9 @@ export const fromConfig: IFormProps = {
     }
   ]
 }
+const fromData = {
+  asd: '',
+  name: '',
+  createTime: ''
+}
+export { fromData, fromConfig }
