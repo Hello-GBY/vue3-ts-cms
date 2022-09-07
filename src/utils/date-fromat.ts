@@ -13,11 +13,11 @@ export default function formatUtcFormat(
 }
 
 // 格式化时间戳
-export function formatTimestamp(
-  utcString: string,
-  format: string = DATE_TIME_FORMAT
-): string {
-  // console.log('dayjs(utcString): ', dayjs(utcString).format(format))
-  // return dayjs(utcString)
-  return ''
-}
+// export function formatTimestamp(
+//   utcString: string,
+//   format: string = DATE_TIME_FORMAT
+// ): string {
+//   // console.log('dayjs(utcString): ', dayjs(utcString).format(format))
+//   // return dayjs(utcString)
+//   return ''
+// }

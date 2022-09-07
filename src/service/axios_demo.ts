@@ -1,5 +1,5 @@
 import axios from 'axios'
-import MyRequest from '@/service/index'
+// import MyRequest from '@/service/index'
 
 // import { BASE_URL } from '@/service/request/config'
 // axios 配置选项
@@ -45,11 +45,11 @@ axios.interceptors.response.use(
 //   url: 'http://123.207.32.32:8000/home/multidata',
 //   method: 'get'
 // })
-interface dataType {
-  data: any
-  returnCode: string
-  success: true
-}
+// interface dataType {
+//   data: any
+//   returnCode: string
+//   success: true
+// }
 // MyRequest.request<dataType>({
 //   url: '/home/multidata',
 //   method: 'get',

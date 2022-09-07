@@ -20,12 +20,12 @@ declare module '@vue/runtime-core' {
     $filters: any
   }
 }
-import { computed, defineComponent, reactive } from 'vue'
+import { defineComponent, reactive } from 'vue'
 
 import { fromConfig, fromData } from './config/searchconfig'
 import { contentTableConfig } from './config/contentconfig'
 
-import { useStore } from '@/store'
+// import { useStore } from '@/store'
 
 import PageSearch from '@/components/page-serach/index'
 import PageContent from '@/components/page-content/index'

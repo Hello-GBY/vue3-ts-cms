@@ -47,7 +47,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import { useRouter, useRoute } from 'vue-router'
-import { pathMapToMenu, pathMapBreadcrumb } from '@/utils/map-menus'
+import { pathMapToMenu } from '@/utils/map-menus'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
 
