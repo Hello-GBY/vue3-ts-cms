@@ -4,11 +4,15 @@
       :fromConfig="fromConfig"
       title="用户管理检索"
       v-model="searchData"
+      @resetBthClick="handleResetClick"
+      @queryBthClick="handleQueryClick"
     >
     </page-search>
     <page-content
       :contentTableConfig="contentTableConfig"
       :pageName="pageName"
+      @resetBthClick="handleResetClick"
+      @queryBthClick="handleQueryClick"
     ></page-content>
   </div>
 </template>
@@ -26,6 +30,8 @@ import { fromConfig, fromData } from './config/searchconfig'
 import { contentTableConfig } from './config/contentconfig'
 
 // import { useStore } from '@/store'
+// 使用全局的函数
+import { usePageSearch } from '@/hooks/use-page-search'
 
 import PageSearch from '@/components/page-serach/index'
 import PageContent from '@/components/page-content/index'
@@ -39,35 +45,15 @@ export default defineComponent({
   setup() {
     // 绑定表单数据
     const searchData = reactive(fromData)
-    // const store = useStore()
-
-    // // 请求
-    // store.dispatch('system/getPageListAction', {
-    //   // queryUrl: '/users/list',
-    //   queryName: 'users',
-    //   queryInfo: {
-    //     offset: 0,
-    //     size: 10
-    //   }
-    // })
-
-    // 修改 store.state.system. 下的值是通过请求之后 获取的
-    // 下面这个值打印的时候并没有赋值上去
-    // store.state.system.userList
-
-    // 要通过计算属性来监听获取到
-    // const userList = computed(() => store.state.system.userList)
-    // const userCount = computed(() => store.state.system.userCount)
-
-    function selectionChange(val: any): void {
-      console.log('val: ', val)
-    }
     const pageName = 'user'
+
+    const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
     return {
       fromConfig,
       searchData,
-      selectionChange,
       contentTableConfig,
+      handleResetClick,
+      handleQueryClick,
       pageName
     }
   }
