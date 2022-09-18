@@ -2,11 +2,6 @@
 <template>
   <div class="content">
     <PageTable :tableData="userList" v-bind="contentTableConfig">
-      <!-- :columns="contentTableConfig.columns" -->
-      <!-- :showIndexColumn="contentTableConfig.showIndexColumn"
-      @selectionChange="contentTableConfig.selectionChange"
-      :showSelectColumn="contentTableConfig.showSelectColumn" -->
-      <!-- :title="contentTableConfig.title" -->
       <template #headerHandler>
         <el-button size="mini">新增用户</el-button>
         <el-button icon="el-icon-refresh" size="mini"></el-button>
@@ -42,6 +37,7 @@
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
 import PageTable from '@/base-ui/table/index'
+import { usePermission } from '@/hooks/use-permission'
 
 export default defineComponent({
   name: 'pagecontent',
@@ -59,18 +55,22 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore()
-
-    store.dispatch('system/getPageListAction', {
-      pageName: props.pageName,
-      queryInfo: {
-        offset: 0,
-        size: 10
-      }
-    })
+    // 从vuex中获取
     const userList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
     )
-    return { userList }
+    // 发送网络请求
+    const getPageData = () => {
+      store.dispatch('system/getPageListAction', {
+        pageName: props.pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    }
+    getPageData()
+    return { userList, getPageData }
   }
 })
 </script>

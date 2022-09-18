@@ -45,7 +45,7 @@ export default defineComponent({
   setup() {
     // 绑定表单数据
     const searchData = reactive(fromData)
-    const pageName = 'user'
+    const pageName = 'users'
 
     const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
     return {

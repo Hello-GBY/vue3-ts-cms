@@ -1,6 +1,10 @@
 <template>
   <div class="role">
-    <page-search :fromConfig="fromConfig" v-model="searchData"></page-search>
+    <page-search
+      title="角色管理检索"
+      :fromConfig="fromConfig"
+      v-model="searchData"
+    ></page-search>
     <page-content
       :contentTableConfig="contentTableConfig"
       pageName="role"
