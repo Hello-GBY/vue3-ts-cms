@@ -9,6 +9,7 @@
     >
     </page-search>
     <page-content
+      ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       :pageName="pageName"
       @resetBthClick="handleResetClick"
@@ -50,6 +51,7 @@ export default defineComponent({
     const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
     return {
       fromConfig,
+      pageContentRef,
       searchData,
       contentTableConfig,
       handleResetClick,

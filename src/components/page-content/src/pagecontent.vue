@@ -60,15 +60,18 @@ export default defineComponent({
       store.getters[`system/pageListData`](props.pageName)
     )
     // 发送网络请求
-    const getPageData = () => {
+    const getPageData = (queryInfo: any = {}) => {
+      console.log('queryInfo: ', queryInfo)
       store.dispatch('system/getPageListAction', {
         pageName: props.pageName,
         queryInfo: {
           offset: 0,
-          size: 10
+          size: 10,
+          ...queryInfo
         }
       })
     }
+
     getPageData()
     return { userList, getPageData }
   }

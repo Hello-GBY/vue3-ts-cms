@@ -92,7 +92,19 @@ export default defineComponent({
       // 不是通过返回 进行给父组件传递值
       emit('selectionChange', value)
     }
-    return { selectionChange }
+    const currentPage1 = 2
+    const handleSizeChange = () => {
+      return {}
+    }
+    const handleCurrentChange = () => {
+      return {}
+    }
+    return {
+      selectionChange,
+      currentPage1,
+      handleSizeChange,
+      handleCurrentChange
+    }
   }
 })
 </script>

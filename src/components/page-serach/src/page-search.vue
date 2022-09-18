@@ -79,7 +79,6 @@ export default defineComponent({
 
     // 点击了搜索
     const handleQueryClick = () => {
-      console.log('点击了搜索')
       emit('queryBthClick', fromDataProps.value)
     }
     // 点击重置的时候
