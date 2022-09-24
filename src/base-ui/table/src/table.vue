@@ -47,10 +47,10 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        v-model:current-page="currentPage1"
-        :page-size="100"
-        layout="total, prev, pager, next"
-        :total="1000"
+        :current-page="page.currentPage"
+        :page-size="page.pageSize"
+        layout="total, prev, pager, next, jumper"
+        :total="tableDataCount"
       >
       </el-pagination>
     </slot>
@@ -68,6 +68,10 @@ export default defineComponent({
       type: Array,
       require: true
     },
+    tableDataCount: {
+      type: Number,
+      require: true
+    },
     columns: {
       type: Array,
       require: true
@@ -83,6 +87,18 @@ export default defineComponent({
     title: {
       type: String,
       default: ''
+    },
+    page: {
+      type: Object,
+      // 对象或者数组应当用工厂函数返回。
+      // 工厂函数会收到组件所接收的原始 props
+      // 作为参数
+      default: function (): any {
+        return {
+          currentPage: 1,
+          pageSize: 10
+        }
+      }
     }
   },
   emits: ['selectionChange'],
@@ -92,7 +108,6 @@ export default defineComponent({
       // 不是通过返回 进行给父组件传递值
       emit('selectionChange', value)
     }
-    const currentPage1 = 2
     const handleSizeChange = () => {
       return {}
     }
@@ -101,7 +116,6 @@ export default defineComponent({
     }
     return {
       selectionChange,
-      currentPage1,
       handleSizeChange,
       handleCurrentChange
     }
