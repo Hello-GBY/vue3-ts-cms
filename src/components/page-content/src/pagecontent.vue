@@ -1,7 +1,13 @@
 !
 <template>
+  <!-- :dataContent="dataContent" -->
   <div class="content">
-    <PageTable :tableData="userList" v-bind="contentTableConfig">
+    <PageTable
+      :tableData="userList"
+      v-bind="contentTableConfig"
+      :tableDataCount="listCount"
+      v-model:pageYT="pageInfo"
+    >
       <template #headerHandler>
         <el-button size="mini">新增用户</el-button>
         <el-button icon="el-icon-refresh" size="mini"></el-button>
@@ -34,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import PageTable from '@/base-ui/table/index'
 import { usePermission } from '@/hooks/use-permission'
@@ -59,6 +65,9 @@ export default defineComponent({
     const userList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
     )
+    const listCount = computed(() =>
+      store.getters[`system/pageListCount`](props.pageName)
+    )
     // 发送网络请求
     const getPageData = (queryInfo: any = {}) => {
       store.dispatch('system/getPageListAction', {
@@ -70,9 +79,13 @@ export default defineComponent({
         }
       })
     }
-
+    // 双向绑定pageInfo
+    const pageInfo = ref({
+      currentPage: 0,
+      pageSize: 10
+    })
     getPageData()
-    return { userList, getPageData }
+    return { userList, getPageData, listCount, pageInfo }
   }
 })
 </script>

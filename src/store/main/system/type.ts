@@ -1,6 +1,6 @@
 export interface ISystemState {
   usersList: any[]
   roleList: any[]
-  userCount: number
+  usersCount: number
   roleCount: number
 }
