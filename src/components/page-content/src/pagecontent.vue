@@ -61,7 +61,6 @@ export default defineComponent({
     )
     // 发送网络请求
     const getPageData = (queryInfo: any = {}) => {
-      console.log('queryInfo: ', queryInfo)
       store.dispatch('system/getPageListAction', {
         pageName: props.pageName,
         queryInfo: {

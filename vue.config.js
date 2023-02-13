@@ -5,7 +5,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 // https://cli.vuejs.org/zh/config/#configurewebpack
 module.exports = {
   outputDir: './build/',
-  // publicPath: './',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue3demo/' : '/',
   // 配置代理
   devServer: {
     proxy: {

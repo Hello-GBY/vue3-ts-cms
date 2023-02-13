@@ -6,14 +6,14 @@
       @click="handleFoldClick()"
     ></i>
     <div class="content">
-      <NavBreadcrumb :breadcrumbs="breadcrumbs" />
+      <uin-breadcrumb :breadcrumbs="breadcrumbs" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import NavBreadcrumb, { breadcrumbProps } from '@/base-ui/breadcrumb/index'
+import UinBreadcrumb, { breadcrumbProps } from '@/base-ui/breadcrumb/index'
 import { useRoute } from 'vue-router'
 import { pathMapBreadcrumb } from '@/utils/map-menus'
 import { useStore } from '@/store'
@@ -21,7 +21,7 @@ import { useStore } from '@/store'
 export default defineComponent({
   name: '',
   components: {
-    NavBreadcrumb
+    UinBreadcrumb
   },
   emit: ['foldChange'],
   setup(props, { emit }) {

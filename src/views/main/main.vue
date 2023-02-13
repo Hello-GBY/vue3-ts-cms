@@ -2,12 +2,12 @@
   <!--主页面布局-->
   <el-container class="main-content">
     <el-aside :width="isCollapse ? '60px' : '210px'">
-      <navMenu :collapse="isCollapse"></navMenu>
+      <uin-nav-menu :collapse="isCollapse"></uin-nav-menu>
     </el-aside>
 
     <el-container class="page">
       <el-header class="page-header">
-        <navHeader @foldChange="handleFoldChange"></navHeader>
+        <uin-nav-header @foldChange="handleFoldChange"></uin-nav-header>
       </el-header>
       <el-main class="page-content">
         <div class="page-info">
@@ -20,14 +20,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import navHeader from '@/components/nav-header'
-import navMenu from '@/components/nav-menu'
+import UinNavHeader from '@/components/nav-header'
+import UinNavMenu from '@/components/nav-menu'
 
 export default defineComponent({
   name: '',
   components: {
-    navHeader,
-    navMenu
+    UinNavHeader,
+    UinNavMenu
   },
   setup() {
     const isCollapse = ref(false)
