@@ -1,4 +1,4 @@
 // 导出导航组件
-import NavMenus from './src/nav-menu.vue'
+import UinNavMenus from './src/nav-menu.vue'
 
-export default NavMenus
+export default UinNavMenus

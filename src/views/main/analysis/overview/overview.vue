@@ -7,7 +7,7 @@
       </div>
     </uin-card>
     <uin-card title="技术栈">
-      <uin-text-link :text-arrs="technologyStacks" />
+      <!-- <uin-text-link :text-arrs="technologyStacks" />
       <uin-descriptions
         title="生产环境依赖"
         :column="2"
@@ -17,7 +17,7 @@
         title="开发环境依赖"
         :column="2"
         :table-datas="devDependencies"
-      />
+      /> -->
     </uin-card>
   </div>
 </template>
