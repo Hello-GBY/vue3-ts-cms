@@ -1,3 +1,3 @@
-import uniTable from './src/table.vue'
+import UinTable from './src/table.vue'
 
-export default uniTable
+export default UinTable

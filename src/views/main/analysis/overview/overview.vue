@@ -7,7 +7,7 @@
       </div>
     </uin-card>
     <uin-card title="技术栈">
-      <!-- <uin-text-link :text-arrs="technologyStacks" />
+      <uin-text-link :text-arrs="technologyStacks" />
       <uin-descriptions
         title="生产环境依赖"
         :column="2"
@@ -17,21 +17,46 @@
         title="开发环境依赖"
         :column="2"
         :table-datas="devDependencies"
-      /> -->
+      />
+    </uin-card>
+    <uin-card title="项目结构">
+      <div class="c-left">
+        <uin-code language="bash" :code="projectDir" />
+      </div>
     </uin-card>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 import UinCard from '@/base-ui/card'
+import UinTextLink from '@/base-ui/text-link'
+import UinCode from '@/base-ui/code'
+import UinDescriptions from '@/base-ui/descriptions'
+
+import {
+  technologyStacks,
+  dependencies,
+  devDependencies,
+  projectDir
+} from './config'
+
 export default defineComponent({
   name: 'overview',
   components: {
-    UinCard
+    UinCard,
+    UinTextLink,
+    UinCode,
+    UinDescriptions
   },
   setup() {
-    return {}
+    return {
+      technologyStacks,
+      dependencies,
+      devDependencies,
+      projectDir
+    }
   }
 })
 </script>

@@ -58,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: '',
@@ -67,6 +67,10 @@ export default defineComponent({
     tableData: {
       type: Array,
       require: true
+    },
+    totalCount: {
+      type: Number,
+      default: 0
     },
     tableDataCount: {
       type: Number,
@@ -84,24 +88,45 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    showFooter: {
+      type: Boolean,
+      default: true
+    },
+    listData: {
+      type: Array as PropType<any[]>,
+      default: () => []
+    },
+    propList: {
+      type: Array as PropType<any[]>,
+      default: () => []
+    },
+    childrenProps: {
+      type: Object,
+      default: () => ({})
+    },
     title: {
       type: String,
-      default: ''
+      default: '表格数据'
     },
     page: {
       type: Object,
       // 对象或者数组应当用工厂函数返回。
       // 工厂函数会收到组件所接收的原始 props
       // 作为参数
-      default: function (): any {
-        return {
-          currentPage: 1,
-          pageSize: 10
-        }
-      }
+      default: () => ({
+        currentPage: 0,
+        pageSize: 10
+      })
+      // ** 不能用函数去操作
+      // default: function (): any {
+      //   return {
+      //     currentPage: 1,
+      //     pageSize: 10
+      //   }
+      // }
     }
   },
-  emits: ['selectionChange'],
+  emits: ['selectionChange', 'update:page'],
   setup(props, { emit }) {
     console.log('props: ', props)
     function selectionChange(value: any): void {

@@ -43,7 +43,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import PageTable from '@/base-ui/table/index'
-import { usePermission } from '@/hooks/use-permission'
+// import { usePermission } from '@/hooks/use-permission'
 
 export default defineComponent({
   name: 'pagecontent',
