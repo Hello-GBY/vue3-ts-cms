@@ -8,6 +8,8 @@ export interface IRootState {
 export interface IRootWithModule {
   login: ILoginInstance
   system: ISystemState
+  // 添加权限
+  permissions: any
 }
 
 export type IStoreType = IRootState & IRootWithModule

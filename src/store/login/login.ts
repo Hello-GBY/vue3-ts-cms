@@ -17,7 +17,8 @@ const loginModel: Module<ILoginInstance, IRootState> = {
     return {
       token: '',
       userInfo: '',
-      userMenus: ''
+      userMenus: '',
+      permissions: ''
     }
   },
   mutations: {
