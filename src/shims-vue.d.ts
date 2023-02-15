@@ -5,6 +5,8 @@ declare module '*.vue' {
   export default component
 }
 declare const VUE_APP_BASE_URL: string
+
+declare module '*.json'
 // declare module 'axios'
 // declare module 'raven-js'
 // declare module 'raven-js/plugins/vue'
