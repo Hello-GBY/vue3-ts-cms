@@ -9,7 +9,7 @@ interface InterceptorsHooks<T = AxiosResponse> {
 }
 
 interface MyAxiosRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
-  interceptors?: InterceptorsHooks<T>
+  interceptorHooks?: InterceptorsHooks<T>
   showLoading?: boolean // 展示全屏 loading
 }
 

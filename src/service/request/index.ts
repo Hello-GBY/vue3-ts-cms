@@ -10,25 +10,25 @@ const LOADING_FLAG = false
 // 统一封装axios
 class MyRequest {
   instance: AxiosInstance // axios 实例
-  interceptors?: InterceptorsHooks // 请求拦截、响应拦截hooks
+  interceptorHooks?: InterceptorsHooks // 请求拦截、响应拦截hooks
   loadingInstance?: ILoadingInstance // 全局loading实例
   showLoading: boolean // 是否显示loading
 
   constructor(config: MyAxiosRequestConfig) {
     this.instance = axios.create(config) // 初始化_创建axios实例
-    this.interceptors = config.interceptors // 拦截器
+    this.interceptorHooks = config.interceptorHooks // 拦截器
     this.showLoading = config.showLoading ?? LOADING_FLAG // 全局loading
 
     // 自定义拦截器
     // request:
     this.instance.interceptors.request.use(
-      this.interceptors?.requestInterceptors,
-      this.interceptors?.requestInterceptorsCatch
+      this.interceptorHooks?.requestInterceptors,
+      this.interceptorHooks?.requestInterceptorsCatch
     )
     // response:
     this.instance.interceptors.response.use(
-      this.interceptors?.responseInterceptors,
-      this.interceptors?.responseInterceptorsCatch
+      this.interceptorHooks?.responseInterceptors,
+      this.interceptorHooks?.responseInterceptorsCatch
     )
 
     // 默认拦截器配置（必须执行）
