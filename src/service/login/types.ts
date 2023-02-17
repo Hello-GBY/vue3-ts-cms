@@ -8,9 +8,10 @@ interface IAccountLogin {
   token: string
 }
 
-interface ILoginApiData<T = any> {
-  code: number
-  data: T
+interface ILoginApiData {
+  id: number
+  token: string
+  name: string
 }
 
 export { IAccount, ILoginApiData, IAccountLogin }

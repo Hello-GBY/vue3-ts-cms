@@ -1,6 +1,10 @@
 <template>
   <div class="base-echart">
-    <div class="echart" ref="echartDivRef" :style="{ width: width, height: height }"></div>
+    <div
+      class="echart"
+      ref="echartDivRef"
+      :style="{ width: width, height: height }"
+    ></div>
   </div>
 </template>
 
@@ -23,6 +27,7 @@ const props = withDefaults(
 )
 
 const echartDivRef = ref<HTMLElement>()
+
 onMounted(() => {
   const [setOptions] = useEcharts(echartDivRef.value!)
   watchEffect(() => {

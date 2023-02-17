@@ -8,7 +8,9 @@ const store = createStore<IRootState>({
   state: () => {
     return {
       name: 'code_gby',
-      age: 18
+      entireRoles: [],
+      entireDepartments: [],
+      entireMenus: []
     }
   },
   mutations: {},

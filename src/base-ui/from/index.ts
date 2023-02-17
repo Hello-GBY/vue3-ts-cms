@@ -1,4 +1,4 @@
-import UinForm from './src/from.vue'
+import UinForm from './src/form.vue'
 
 export * from './type/types'
 export default UinForm

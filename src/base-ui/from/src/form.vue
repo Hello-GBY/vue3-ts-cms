@@ -17,7 +17,7 @@
             <el-form-item :label="item.label" :rules="item.rules">
               <template v-if="item.type == 'input' || item.type == 'password'">
                 <el-input
-                  :placeholder="item.placeholder"
+                  :placeholder="item.placeHolder"
                   :show-password="item.type === 'password'"
                   v-bind="item.otherOptions"
                   v-model="fromData[`${item.field}`]"
@@ -26,7 +26,7 @@
               </template>
               <template v-else-if="item.type == 'select'">
                 <el-select
-                  :placeholder="item.placeholder"
+                  :placeholder="item.placeHolder"
                   style="width: 100%"
                   v-bind="item.otherOptions"
                   v-model="fromData[`${item.field}`]"

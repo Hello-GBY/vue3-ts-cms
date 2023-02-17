@@ -20,8 +20,8 @@ function accountLoginRequest(
 }
 
 // 请求用户数据
-function userInfoByIdRequest(id: number): Promise<ILoginApiData> {
-  return MyRequest.get<ILoginApiData>({
+function userInfoByIdRequest(id: number): Promise<any> {
+  return MyRequest.get({
     url: loginApi.LoginUserInfo + id
   })
 }

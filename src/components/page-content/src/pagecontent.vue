@@ -65,6 +65,7 @@ export default defineComponent({
     const userList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
     )
+    console.log('userList: ', userList)
     const listCount = computed(() =>
       store.getters[`system/pageListCount`](props.pageName)
     )

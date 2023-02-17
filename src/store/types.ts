@@ -4,7 +4,9 @@ import { IAnalysis } from './main/analysis/types'
 
 export interface IRootState {
   name: string
-  age: number
+  entireRoles: any[]
+  entireDepartments: any[]
+  entireMenus: any[]
 }
 
 export interface IRootWithModule {

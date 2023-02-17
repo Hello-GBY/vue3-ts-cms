@@ -1,6 +1,8 @@
 <template>
   <!--v-model不建议从 props 中 获取-->
   <uin-from v-bind="fromConfig" v-model="fromDataProps">
+    {{ fromDataProps }}
+    {{ fromConfig }}
     <!-- <slot name="heard">标题</slot> -->
     <!--itemProps 获取solt 传递过来的值-->
     <!-- <template #header="itemProps"> -->
@@ -64,7 +66,6 @@ export default defineComponent({
   setup(props, { emit }) {
     // 这种情况才是真正的双向绑定
     const fromDataProps = ref({ ...props.modelValue })
-    console.log('fromDataProps: ', fromDataProps.value)
     watch(fromDataProps, (newValue) => emit('update:modelValue', newValue), {
       deep: true
     })
@@ -81,6 +82,7 @@ export default defineComponent({
     const handleQueryClick = () => {
       emit('queryBthClick', fromDataProps.value)
     }
+
     // 点击重置的时候
     return { fromDataProps, handleRestClick, handleQueryClick }
   }

@@ -40,21 +40,25 @@ const loginModel: Module<ILoginInstance, IRootState> = {
   },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
+      if (payload.name == 'admin') {
+        payload.name = 'coderWhy'
+      }
+
       // 1.实现登录的逻辑
       const loginResult = await accountLoginRequest(payload)
-      const { id, token } = loginResult.data
+      const { id, token } = loginResult
       commit('setToken', token)
       LocalCache.setCache('token', token)
 
       // 2. 请求用户信息
-      const userInfoResult = await userInfoByIdRequest(id)
-      const userInfo = userInfoResult.data
+      const userInfo = await userInfoByIdRequest(id)
       commit('setUserInfo', userInfo)
       LocalCache.setCache('userInfo', userInfo)
 
       // 3.请求菜单
       const userMenusResult = await userMenusByRoleIdRequest(userInfo.role.id)
-      const userMenus = userMenusResult.data
+      const userMenus = userMenusResult
+
       // 设置动态路由
       commit('setUserMenus', userMenus)
       LocalCache.setCache('userMenus', userMenus)
