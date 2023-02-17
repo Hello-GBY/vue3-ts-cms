@@ -1,8 +1,6 @@
 <template>
   <!--v-model不建议从 props 中 获取-->
   <uin-from v-bind="fromConfig" v-model="fromDataProps">
-    {{ fromDataProps }}
-    {{ fromConfig }}
     <!-- <slot name="heard">标题</slot> -->
     <!--itemProps 获取solt 传递过来的值-->
     <!-- <template #header="itemProps"> -->

@@ -12,7 +12,7 @@
           <el-input v-model="form.name"></el-input>
         </el-form-item>
       </el-col> -->
-        <template v-for="item in fromItems" :key="item.label">
+        <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item :label="item.label" :rules="item.rules">
               <template v-if="item.type == 'input' || item.type == 'password'">
@@ -76,7 +76,7 @@ export default defineComponent({
     //   require: true,
     //   default: () => ({})
     // },
-    fromItems: {
+    formItems: {
       type: Array as PropType<IFormItem[]>,
       default: () => []
     },
