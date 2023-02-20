@@ -15,7 +15,9 @@ const systemModel: Module<ISystemState, IRootState> = {
     roleCount: 0,
     //
     departmentTotalCount: 0,
-    departmentList: []
+    departmentList: [],
+    //
+    menuList: []
   },
   mutations: {
     changeUsersList: (state, newValue) => (state.usersList = newValue),
@@ -25,7 +27,10 @@ const systemModel: Module<ISystemState, IRootState> = {
     changeDepartmentList: (state, departmentList) =>
       (state.departmentList = departmentList),
     changeDepartmentCount: (state, totalCount: number) =>
-      (state.departmentTotalCount = totalCount)
+      (state.departmentTotalCount = totalCount),
+    changeMenuList(state, menuList: any) {
+      state.menuList = menuList
+    }
   },
   getters: {
     pageListData(state) {
@@ -39,14 +44,29 @@ const systemModel: Module<ISystemState, IRootState> = {
     async getPageListAction({ commit }, playLoad: any) {
       const pageName = playLoad.pageName
       const apiUrl = `/${pageName}/List`
-      const firstUpperPageName = firstUpperCase(pageName)
+      // const firstUpperPageName = firstUpperCase(pageName)
 
       // 拿到要请求的参数 调用service 来发送服务请求
       const pageResult = await getPageListData(apiUrl, playLoad.queryInfo)
       const { list, totalCount } = pageResult || {}
 
-      commit(`change${firstUpperPageName}List`, list)
-      commit(`change${firstUpperPageName}Count`, totalCount)
+      switch (pageName) {
+        case 'users':
+          commit('changeUsersCount', totalCount)
+          commit('changeUsersList', list)
+          break
+        case 'department':
+          commit('changeDepartmentCount', totalCount)
+          commit('changeDepartmentList', list)
+          break
+        case 'role':
+          commit('changeRoleCount', totalCount)
+          commit('changeRoleList', list)
+          break
+        case 'menu':
+          commit('changeMenuList', list)
+          break
+      }
     }
   },
   modules: {}
