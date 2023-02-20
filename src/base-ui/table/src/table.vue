@@ -18,7 +18,7 @@
     <el-table-column
       align="center"
       v-if="showSelectColumn"
-      width="80"
+      width="60"
       type="selection"
     >
     </el-table-column>
@@ -33,7 +33,7 @@
     >
     </el-table-column>
     <template v-for="column in columns" :key="column.prop">
-      <el-table-column v-bind="column" align="center">
+      <el-table-column v-bind="column" align="center" show-overflow-tooltip>
         <template #default="scope">
           <slot :name="column.slotName" :row="scope.row">
             {{ scope.row[column.prop] }}

@@ -1,4 +1,3 @@
-!
 <template>
   <!-- :dataContent="dataContent" -->
   <div class="content">
@@ -34,6 +33,15 @@
         <el-button size="mini" icon="el-icon-delete" type="text" plain
           >删除</el-button
         >
+      </template>
+      <template
+        v-for="item in otherPropSlots"
+        :key="item.prop"
+        #[item.slotName]="scope"
+      >
+        <template v-if="item.slotName">
+          <slot :name="item.slotName" :row="scope.row"></slot>
+        </template>
       </template>
     </PageTable>
   </div>
@@ -85,7 +93,21 @@ export default defineComponent({
       pageSize: 10
     })
     getPageData()
-    return { userList, getPageData, listCount, pageInfo }
+
+    // 4.剩余需要的插槽
+    const otherPropSlots = computed(() => {
+      if (props.contentTableConfig) {
+        return props.contentTableConfig.columns.filter((item: any) => {
+          if (item.slotName === 'status') return false
+          else if (item.slotName === 'create') return false
+          else if (item.slotName === 'update') return false
+          else if (item.slotName === 'handler') return false
+          return true
+        })
+      }
+      return []
+    })
+    return { userList, getPageData, listCount, pageInfo, otherPropSlots }
   }
 })
 </script>

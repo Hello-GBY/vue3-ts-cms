@@ -2,7 +2,6 @@ import { Module } from 'vuex'
 import { IRootState } from '@/store/types'
 import { ISystemState } from './type'
 import { getPageListData } from '@/service/main/system/system'
-import { firstUpperCase } from '@/utils/common'
 
 const systemModel: Module<ISystemState, IRootState> = {
   namespaced: true, // 一定要加这个
@@ -17,7 +16,10 @@ const systemModel: Module<ISystemState, IRootState> = {
     departmentTotalCount: 0,
     departmentList: [],
     //
-    menuList: []
+    menuList: [],
+    //
+    goodsTotalCount: 0,
+    goodsList: []
   },
   mutations: {
     changeUsersList: (state, newValue) => (state.usersList = newValue),
@@ -30,6 +32,12 @@ const systemModel: Module<ISystemState, IRootState> = {
       (state.departmentTotalCount = totalCount),
     changeMenuList(state, menuList: any) {
       state.menuList = menuList
+    },
+    changeGoodsTotalCount(state, totalCount: number) {
+      state.goodsTotalCount = totalCount
+    },
+    changeGoodsList(state, roleList: any) {
+      state.goodsList = roleList
     }
   },
   getters: {
@@ -65,6 +73,10 @@ const systemModel: Module<ISystemState, IRootState> = {
           break
         case 'menu':
           commit('changeMenuList', list)
+          break
+        case 'goods':
+          commit('changeGoodsTotalCount', totalCount)
+          commit('changeGoodsList', list)
           break
       }
     }
