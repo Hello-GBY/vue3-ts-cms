@@ -12,13 +12,20 @@ const systemModel: Module<ISystemState, IRootState> = {
     usersCount: 0,
     // role
     roleList: [],
-    roleCount: 0
+    roleCount: 0,
+    //
+    departmentTotalCount: 0,
+    departmentList: []
   },
   mutations: {
     changeUsersList: (state, newValue) => (state.usersList = newValue),
     changeUsersCount: (state, newValue) => (state.usersCount = newValue),
     changeRoleList: (state, newValue) => (state.roleList = newValue),
-    changeRoleCount: (state, newValue) => (state.roleCount = newValue)
+    changeRoleCount: (state, newValue) => (state.roleCount = newValue),
+    changeDepartmentList: (state, departmentList) =>
+      (state.departmentList = departmentList),
+    changeDepartmentCount: (state, totalCount: number) =>
+      (state.departmentTotalCount = totalCount)
   },
   getters: {
     pageListData(state) {
@@ -36,7 +43,7 @@ const systemModel: Module<ISystemState, IRootState> = {
 
       // 拿到要请求的参数 调用service 来发送服务请求
       const pageResult = await getPageListData(apiUrl, playLoad.queryInfo)
-      const { list, totalCount } = pageResult?.data || {}
+      const { list, totalCount } = pageResult || {}
 
       commit(`change${firstUpperPageName}List`, list)
       commit(`change${firstUpperPageName}Count`, totalCount)

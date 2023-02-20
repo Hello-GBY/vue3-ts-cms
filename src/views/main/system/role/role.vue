@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import pageSearch from '@/components/page-serach'
+import pageSearch from '@/components/page-search'
 import pageContent from '@/components/page-content'
 import { fromConfig, fromData } from './config/searchconfig'
 import { contentTableConfig } from './config/contentconfig'

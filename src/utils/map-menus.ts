@@ -38,7 +38,6 @@ export function mapMenusToRouter(userMenus: any[]): RouteRecordRaw[] {
     }
   }
   _recurseGetRouter(userMenus)
-  console.log('Routers: ', Routers)
   return Routers
 }
 
