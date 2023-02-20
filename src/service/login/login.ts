@@ -10,10 +10,8 @@ enum loginApi {
 }
 
 // 登录请求
-function accountLoginRequest(
-  account: IAccount
-): Promise<ILoginApiData<IAccountLogin>> {
-  return MyRequest.post<ILoginApiData<IAccountLogin>>({
+function accountLoginRequest(account: IAccount): Promise<ILoginApiData> {
+  return MyRequest.post<ILoginApiData>({
     url: loginApi.LoginBaseUrl,
     data: account
   })

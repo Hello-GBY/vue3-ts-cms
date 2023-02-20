@@ -12,8 +12,8 @@
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       :pageName="pageName"
-      @resetBthClick="handleResetClick"
-      @queryBthClick="handleQueryClick"
+      @newBtnClick="handleResetClick"
+      @editBtnClick="handleQueryClick"
     ></page-content>
     <page-modal
       ref="pageModalRef"
@@ -40,7 +40,7 @@ import { IFormItem } from '@/base-ui/from'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/usePageModal'
 
-import PageSearch from '@/components/page-serach'
+import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
 import PageModal from '@/components/page-modal'
 
