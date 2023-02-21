@@ -10,4 +10,6 @@ export interface ISystemState {
   goodsList: any[]
   categoryTotalCount: number
   categoryList: any[]
+  storyTotalCount: number
+  storyList: any[]
 }

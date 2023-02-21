@@ -23,7 +23,11 @@ const systemModel: Module<ISystemState, IRootState> = {
 
     //
     categoryTotalCount: 0,
-    categoryList: []
+    categoryList: [],
+
+    //
+    storyTotalCount: 0,
+    storyList: []
   },
   mutations: {
     changeUsersList: (state, newValue) => (state.usersList = newValue),
@@ -48,6 +52,12 @@ const systemModel: Module<ISystemState, IRootState> = {
     },
     changeCategoryList(state, roleList: any) {
       state.categoryList = roleList
+    },
+    changeStoryTotalCount(state, totalCount: number) {
+      state.storyTotalCount = totalCount
+    },
+    changeStoryList(state, storyList: any) {
+      state.storyList = storyList
     }
   },
   getters: {
@@ -91,6 +101,10 @@ const systemModel: Module<ISystemState, IRootState> = {
         case 'category':
           commit('changeCategoryTotalCount', totalCount)
           commit('changeCategoryList', list)
+          break
+        case 'story':
+          commit('changeStoryTotalCount', totalCount)
+          commit('changeStoryList', list)
           break
       }
     }
