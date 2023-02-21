@@ -118,18 +118,21 @@ export default defineComponent({
       background-color: #0c2135 !important;
     }
   }
-  ::v-deep .el-submenu__title {
+  ::v-deep .el-sub-menu__title {
     background-color: #001529 !important;
   }
+
   // hover 高亮
   .el-menu-item:hover {
     color: #fff !important; // 菜单
   }
+
   .el-menu-item.is-active {
     color: #fff !important;
     background-color: #0a60bd !important;
   }
 }
+
 .el-menu-vertical:not(.el-menu--collapse) {
   width: 100%;
   height: calc(100% - 48px);
