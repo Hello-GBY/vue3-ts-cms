@@ -19,7 +19,11 @@ const systemModel: Module<ISystemState, IRootState> = {
     menuList: [],
     //
     goodsTotalCount: 0,
-    goodsList: []
+    goodsList: [],
+
+    //
+    categoryTotalCount: 0,
+    categoryList: []
   },
   mutations: {
     changeUsersList: (state, newValue) => (state.usersList = newValue),
@@ -38,6 +42,12 @@ const systemModel: Module<ISystemState, IRootState> = {
     },
     changeGoodsList(state, roleList: any) {
       state.goodsList = roleList
+    },
+    changeCategoryTotalCount(state, totalCount: number) {
+      state.categoryTotalCount = totalCount
+    },
+    changeCategoryList(state, roleList: any) {
+      state.categoryList = roleList
     }
   },
   getters: {
@@ -77,6 +87,10 @@ const systemModel: Module<ISystemState, IRootState> = {
         case 'goods':
           commit('changeGoodsTotalCount', totalCount)
           commit('changeGoodsList', list)
+          break
+        case 'category':
+          commit('changeCategoryTotalCount', totalCount)
+          commit('changeCategoryList', list)
           break
       }
     }
