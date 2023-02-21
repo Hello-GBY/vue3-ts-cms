@@ -7,7 +7,9 @@ import { setupStoreByLocalStorage } from '@/store/index'
 
 import '@/service/axios_demo'
 import '@/assets/css/base.scss'
-import 'element-plus/packages/theme-chalk/src/base.scss'
+import 'element-plus/theme-chalk/src/base.scss'
+// import 'element-plus/theme-chalk/src/base.scss'
+import 'element-plus/theme-chalk/el-message.css'
 // import 'element-plus/packages/theme-chalk/src/loading.scss'
 
 const app = createApp(App)

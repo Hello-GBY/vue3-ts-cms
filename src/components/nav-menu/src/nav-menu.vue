@@ -50,7 +50,6 @@ import { useRouter, useRoute } from 'vue-router'
 import { pathMapToMenu } from '@/utils/map-menus'
 
 //  vuex 对typescript 支持不好 要引入pinia库 来进行 store 的类型检测
-
 export default defineComponent({
   name: '',
   components: {},
@@ -113,10 +112,10 @@ export default defineComponent({
   .el-submenu {
     background-color: #001529 !important;
     // 二级菜单 ( 默认背景 )
-    .el-menu-item {
-      padding-left: 50px !important;
-      background-color: #0c2135 !important;
-    }
+  }
+  .el-menu-item {
+    padding-left: 50px !important;
+    background-color: #0c2135 !important;
   }
   ::v-deep .el-sub-menu__title {
     background-color: #001529 !important;

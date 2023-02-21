@@ -7,6 +7,7 @@
     ></i>
     <div class="content">
       <uin-breadcrumb :breadcrumbs="breadcrumbs" />
+      <nav-info />
     </div>
   </div>
 </template>
@@ -16,12 +17,15 @@ import { defineComponent, ref, computed } from 'vue'
 import UinBreadcrumb, { breadcrumbProps } from '@/base-ui/breadcrumb/index'
 import { useRoute } from 'vue-router'
 import { pathMapBreadcrumb } from '@/utils/map-menus'
+import NavInfo from './nav-info.vue'
+
 import { useStore } from '@/store'
 
 export default defineComponent({
   name: '',
   components: {
-    UinBreadcrumb
+    UinBreadcrumb,
+    NavInfo
   },
   emit: ['foldChange'],
   setup(props, { emit }) {
