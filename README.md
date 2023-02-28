@@ -1,6 +1,10 @@
 # vue3-ts-cms
+是一个主要练习使用 Vue3 + TS 整了使用体验项目。
+将组价按照`base-ui`、`components` ，`view`进行整理，互相调用
 
-## Project setup
+在线地址：http://101.43.128.23/vue3demo/
+
+## 安装依赖
 
 ```
 npm install
@@ -91,14 +95,12 @@ npm i normalize.css -save
 ```
 
 ### 动态路由
-权限管理 这块需要回顾
+权限管理
 
 ### 采坑
 ## 在ts文件中引入外部模块的时候报错，
 在打vscode时会提示 一个以下内容的弹窗 选 disable 即可
 A package.json file is detected in the project. This project may be a Node.js project. Do you want to disable this extension?
 
-
-
 ### 待优化
-main.vue 下的样式 移动到 base.css 中
+....
